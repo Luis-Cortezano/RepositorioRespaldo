@@ -12,47 +12,82 @@ header {
     color: white;
 }
 
-.navbar {
+/* General Styles for Navbar */
+/* Navbar Custom Styles */
+.navbar-custom {
+    background-color: #357c28; /* Color de fondo de la navbar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em;
+    padding: 0.5em 2em; /* Ajuste de padding */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    border-bottom: 1px solid #2c3e50; /* Línea inferior de la navbar */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
 }
 
-.navbar-brand h1 {
-    margin: 0;
-}
-
-.navbar-menu a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1em;
+/* Navbar Brand */
+.navbar-brand {
+    font-size: 2rem;
     font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.navbar-brand:hover {
+    color: #94dd81; /* Color al pasar el mouse */
+    transform: translateY(-3px);
+}
+
+/* Navbar Menu */
+.navbar-menu {
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+}
+
+/* Enlaces del Navbar */
+.navbar-menu a {
+    color: #fff; /* Color blanco para el texto de los enlaces */
+    text-decoration: none;
+    padding: 0.5em 1.5em;
+    border-radius: 25px;
+    font-weight: 600;
     position: relative;
     overflow: hidden;
-    display: inline-block;
-    padding: 0.5em 1em;
+    transition: color 0.3s, background-color 0.3s;
+    background: linear-gradient(135deg, #559D46, #2c3e50); /* Fondo degradado */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Sombra sutil */
 }
 
+/* Efecto de brillo en los enlaces */
 .navbar-menu a::before {
     content: '';
     position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    background: #FFD700;
-    transform: translateX(-100%);
+    left: 50%;
+    top: 50%;
+    height: 200%;
+    width: 200%;
+    background: rgba(255, 255, 255, 0.2); /* Efecto de brillo */
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
     transition: transform 0.4s ease;
     z-index: 0;
 }
 
 .navbar-menu a:hover::before {
-    transform: translateX(0);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .navbar-menu a:hover {
-    color: #2c3e50;
+    color: #fff; /* Color del texto en hover */
 }
 
 .navbar-menu a span {
@@ -60,53 +95,31 @@ header {
     z-index: 1;
 }
 
-.navbar-custom {
-    background-color: #559D46;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.navbar-nav .nav-link {
-    font-size: 1.2rem;
-    color: #ccc;
-    transition: color 0.3s, transform 0.3s;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #FFD700;
-}
-
-.navbar-brand {
-    font-size: 1.5rem;
-    color: #fff;
-    transition: transform 0.3s;
-}
-
-.navbar-brand:hover {
-    transform: scale(1.05);
-}
-
-.navbar-nav .nav-link i {
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
-}
-
+/* Navbar Toggler */
 .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.5);
-    transition: transform 0.3s;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 2rem; /* Tamaño más grande del toggler */
+    padding: 0.5em;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.navbar-toggler:hover {
+    color: #94dd81; /* Color al pasar el mouse */
 }
 
 .navbar-toggler-icon {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 0.4em 0.8em; /* Tamaño ajustado */
 }
 
 .navbar-toggler.active .navbar-toggler-icon {
-    transform: rotate(45deg);
+    transform: rotate(180deg);
 }
 
+/* Dropdown Menu */
 .dropdown-menu {
     display: none;
     opacity: 0;
@@ -118,44 +131,60 @@ header {
     opacity: 1;
 }
 
-.nav-text-white {
-    color: #fff !important;
+/* Estilo de los íconos en la navbar */
+.navbar-menu i {
+    font-size: 1.9rem; /* Tamaño más grande de los íconos */
+    transition: color 0.3s;
 }
 
-/* Responsive design */
+.navbar-menu i:hover {
+    color: #94dd81; /* Color de los íconos al pasar el mouse */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .navbar-menu {
         display: flex;
         flex-direction: column;
         gap: 0.5em;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #357c28; /* Fondo de la barra en vista móvil */
+        width: 100%;
+        padding: 1em;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra sutil */
     }
-    
-    .navbar-menu a {
-        margin: 0;
-        padding: 0.5em;
-    }
-}
 
-.product-container {
-    padding: 2em;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em; 
+    .navbar-menu a {
+        padding: 0.8em 1.2em;
+        font-size: 1.1rem;
+        text-align: center;
+        border-radius: 0;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
 }
 
 .card {
-    flex: 1 1 calc(25% - 1em); /* Ajusta el tamaño para que quepan 4 tarjetas por fila */
+    flex: 1 1 250px; /* Ajusta el tamaño para que se mantenga el ancho deseado */
     background: linear-gradient(135deg, #ffffff, #e6e6e6); 
     border-radius: 15px; 
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 1.5em; 
     padding: 1em;
     box-sizing: border-box;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+    width: 270px; /* Establece un ancho fijo para la tarjeta */
+    height: 240px; /* Altura fija de la tarjeta */
+    overflow: hidden; /* Evita que el contenido se desborde */
 }
 
 .card:hover {
@@ -165,63 +194,78 @@ header {
 
 .card-img-top {
     width: 100%;
-    height: 150px; /* Ajustado para que las tarjetas sean menos largas */
-    object-fit: cover;
+    height: 90px; /* Ajusta la altura de la imagen */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
     border-radius: 12px;
-    padding: 0.5em;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .card-img-top:hover {
-    transform: translateY(-10px) scale(1.05); 
+    transform: scale(1.05); 
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
 }
 
 .card-body {
-    padding: 1.2em;
+    padding: 1em;
     text-align: center;
     color: #333; 
     font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1; /* Asegura que el cuerpo de la tarjeta crezca para llenar el espacio disponible */
+    overflow: hidden; /* Evita que el contenido se desborde */
 }
 
 .card-title {
-    font-size: 1.1em; 
+    font-size: 1.2em; 
     font-weight: bold;
-    margin: 0.7em 0;
+    margin: 0.5em 0;
     color: #357c28; 
 }
 
 .card-text {
-    font-size: 0.85em;
+    font-size: 0.9em;
     color: #666;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
 }
 
 .card-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     padding-top: 1em;
     border-top: 1px solid #ddd; 
 }
 
-.card-footer a {
-    text-decoration: none;
-    font-size: 0.9em;
-    color: #559d46; 
-    transition: color 0.3s ease;
+.card-footer .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 0.5em 1em;
+    font-size: 0.8em;
+    color: #fff;
+    background-color: #559d46; /* Color de botón */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.card-footer a:hover {
-    color: #94dd81; 
+.card-footer .btn:hover {
+    background-color: #357c28; 
+    transform: scale(1.05);
+}
+
+.card-footer .btn-secondary {
+    background-color: #94dd81;
+}
+
+.card-footer .btn-secondary:hover {
+    background-color: #7black;
 }
 
 svg {
     width: 20px;
     height: 20px;
 }
-
-
 
 .btn-search {
     border: 1px solid #000;
@@ -280,6 +324,8 @@ svg {
     transform: translateY(0);
 }
 
+
+
 .btn-search:hover span:nth-child(2) { transition-delay: 0.1s; }
 .btn-search:hover span:nth-child(3) { transition-delay: 0.2s; }
 .btn-search:hover span:nth-child(4) { transition-delay: 0.3s; }
@@ -288,7 +334,7 @@ svg {
 
 /* Estilos del banner de ofertas */
 .offer-banner {
-    background: linear-gradient(135deg, #85c1e9, #2874a6); /* Azules personalizados para Yasbel */
+    background: linear-gradient(135deg, #357C28, #559D46); /* Azules personalizados para Yasbel */
     border-radius: 15px;
     padding: 40px;
     text-align: center;
@@ -313,7 +359,7 @@ svg {
 }
 
 .discount {
-    color: #ff5733; /* Naranja vibrante */
+    color: #f7f406; /* Naranja vibrante */
     animation: pulse 2s infinite;
 }
 
@@ -363,7 +409,7 @@ svg {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #ff5733; 
+    background-color: #82f90a; 
     color: #fff;
     padding: 8px 12px;
     border-radius: 5px;
@@ -386,7 +432,7 @@ svg {
 
 .card-price {
     font-size: 1.4rem;
-    color: #2874a6; 
+    color: #f7f406; 
     margin-bottom: 15px;
 }
 
@@ -411,15 +457,18 @@ svg {
 
 .card-buttons .btn-primary {
     background-color: #2874a6;
+    text-align: center;
 }
 
 .card-buttons .btn-primary:hover {
     background-color: #1f5a8c;
     transform: scale(1.05); 
+    text-align: center;
 }
 
 .card-buttons .btn-secondary {
     background-color: #ff5733;
+    text-align: center;
 }
 
 .card-buttons .btn-secondary:hover {
@@ -563,50 +612,50 @@ svg {
     .offer-banner {
         padding: 15px;
     }
-    
+
     .offer-text {
         font-size: 1.2rem;
     }
 }
 
-  .modal-content {
-        background: #f8f9fa;
-        border-radius: 10px;
-    }
-    .modal-header {
-        background: #007bff;
-        color: white;
-        border-radius: 10px 10px 0 0;
-        padding: 1rem 1.5rem;
-    }
-    .modal-title {
-        font-weight: 600;
-    }
-    .custom-input,
-    .custom-select,
-    .custom-textarea {
-        border-radius: 5px;
-        border: 1px solid #ced4da;
-        box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        transition: border-color 0.2s ease-in-out;
-    }
-    .custom-input:focus,
-    .custom-select:focus,
-    .custom-textarea:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
-    }
-    .custom-btn {
-        background: #007bff;
-        border: none;
-        border-radius: 5px;
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
-    }
-    .custom-btn:hover {
-        background: #0056b3;
-    }
-   /* Estilo para el modal */
+.modal-content {
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+.modal-header {
+    background: #007bff;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    padding: 1rem 1.5rem;
+}
+.modal-title {
+    font-weight: 600;
+}
+.custom-input,
+.custom-select,
+.custom-textarea {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease-in-out;
+}
+.custom-input:focus,
+.custom-select:focus,
+.custom-textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+.custom-btn {
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+}
+.custom-btn:hover {
+    background: #0056b3;
+}
+/* Estilo para el modal */
 .modal-content {
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -692,7 +741,7 @@ svg {
     margin: 0;
 }
 
-    
+
 .btn-primary {
     background-color: #357c28; 
     color: #fff; 
@@ -743,21 +792,21 @@ svg {
     box-shadow: none; 
 }
 .promo-banner {
-  background-color: #ffdb00;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 24px;
-  font-weight: bold;
-  display: inline-block;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+    background-color: #ffdb00;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .promo-banner strong {
-  font-size: 36px;
+    font-size: 36px;
 }
 .carousel-content {
     position: relative;

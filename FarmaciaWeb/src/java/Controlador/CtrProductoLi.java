@@ -144,9 +144,9 @@ public class CtrProductoLi extends HttpServlet {
                 request.setAttribute("productos", productos);
 
                 if (sesion.getAttribute("tipo").equals("Usuario")) {
-                    request.getRequestDispatcher("Vistas/HomePageAdm.jsp").forward(request, response);
-                } else {
                     request.getRequestDispatcher("Vistas/HomePage.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("Vistas/HomePageAdm.jsp").forward(request, response);
                 }
                 break;
             case "buscar":
