@@ -144,9 +144,9 @@ public class CtrProductoLi extends HttpServlet {
                 request.setAttribute("productos", productos);
 
                 if (sesion.getAttribute("tipo").equals("Usuario")) {
-                    request.getRequestDispatcher("Vistas/HomePage.jsp").forward(request, response);
-                } else {
                     request.getRequestDispatcher("Vistas/HomePageAdm.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("Vistas/HomePage.jsp").forward(request, response);
                 }
                 break;
             case "buscar":
@@ -309,6 +309,7 @@ public class CtrProductoLi extends HttpServlet {
                 break;
             case "Comprar":
                 totalpagar = 0;
+                cantidad = 1;
                 idp = Integer.parseInt(request.getParameter("id"));
                 p = pdao.listaridp(idp);
                 item++;
@@ -319,6 +320,7 @@ public class CtrProductoLi extends HttpServlet {
                 car.setDescripcion(p.getProDescripcion());
                 car.setFoto(p.getProFoto());
                 car.setPreciocompra(p.getProPrecio());
+                car.setDescuento(p.getProDescuento());
                 car.setCantidad(cantidad);
                 car.setSubtotal(cantidad * p.getProPrecio());
                 boolean producto = false;
@@ -329,23 +331,49 @@ public class CtrProductoLi extends HttpServlet {
                         con = i;
                         System.out.println("entro al si");
                     }
+                    if (listacarrito.get(i).getDescuento() > 0) {
+                        descuento = descuento + (listacarrito.get(i).getDescuento() * listacarrito.get(i).getPreciocompra() / 100);
+                        decuentototal = decuentototal + descuento * cantidad;
+                        listacarrito.get(i).setDescuento(decuentototal);
+
+                    }
+                    total = totalpagar - decuentototal;
                     totalpagar = totalpagar + listacarrito.get(i).getSubtotal();
                 }
                 if (producto == false) {
                     listacarrito.add(car);
                     totalpagar = totalpagar + listacarrito.get(listacarrito.size() - 1).getSubtotal();
+                    if (p.getProDescuento() > 0) {
+                        car.setDescuento(cantidad * p.getProDescuento() * p.getProPrecio() / 100);
+                        decuentototal = decuentototal + car.getDescuento();
+                        System.out.println("descuento carrito  : " + car.getDescuento());
+
+                        System.out.println("decuento total pagar:" + decuentototal);
+                    }
+                    total = totalpagar - decuentototal;
                     System.out.println("entro al falso");
                 } else {
                     listacarrito.get(con).setCantidad(listacarrito.get(con).getCantidad() + 1);
                     listacarrito.get(con).setSubtotal(listacarrito.get(con).getPreciocompra() * listacarrito.get(con).getCantidad());
+
                     int can = listacarrito.get(con).getCantidad();
+                    if (p.getProDescuento() > 0) {
+                        car.setDescuento(cantidad * p.getProDescuento() * p.getProPrecio() / 100);
+                        decuentototal = decuentototal + car.getDescuento();
+                        System.out.println("descuento carrito  : " + car.getDescuento());
+
+                        System.out.println("decuento total pagar:" + decuentototal);
+                    }
                     totalpagar = totalpagar + (listacarrito.get(con).getPreciocompra() * (can - 1));
+                    total = totalpagar - decuentototal;
                     System.out.println("entro al sino");
                 }
+
                 request.setAttribute("totalpagar", totalpagar);
                 request.setAttribute("carrito", listacarrito);
                 request.setAttribute("contador", listacarrito.size());
-                request.setAttribute("totalpagar", totalpagar);
+                request.setAttribute("total", total);
+                request.setAttribute("descuento", decuentototal);
                 request.setAttribute("carrito", listacarrito);
                 System.out.println(sesion.getAttribute("tipo").equals("Usuario"));
 
@@ -480,16 +508,16 @@ public class CtrProductoLi extends HttpServlet {
                 System.out.println("entro actualizar cantidad cantidad = " + can);
                 System.out.println("lista carrito : " + listacarrito.size());
                 for (int i = 0; i < listacarrito.size(); i++) {
-                System.out.println("lista carrito descuento : " + i);
+                    System.out.println("lista carrito descuento : " + i);
                     if (idpro == listacarrito.get(i).getIdproducto()) {
                         listacarrito.get(i).setCantidad(can);
                         listacarrito.get(i).setDescuento(listacarrito.get(i).getCantidad() * listacarrito.get(i).getPreciocompra() * listacarrito.get(i).getDescuento() / 100);
-                        System.out.println("cantidad : " +listacarrito.get(i).getCantidad() );
+                        System.out.println("cantidad : " + listacarrito.get(i).getCantidad());
                         System.out.println("precio : " + listacarrito.get(i).getPreciocompra());
                         System.out.println("descuento : " + listacarrito.get(i).getDescuento());
                         int st = listacarrito.get(i).getPreciocompra() * can;
                         listacarrito.get(i).setSubtotal(st);
-                        //decuentototal = decuentototal + listacarrito.get(i).getDescuento();
+                        //descuento = decuentototal + listacarrito.get(i).getDescuento();
                         System.out.println("lista carrito descuento : " + listacarrito.get(i).getDescuento());
                     }
                 }
@@ -504,7 +532,7 @@ public class CtrProductoLi extends HttpServlet {
                 }
                 break;
 
-            case "pedido":
+             case "pedido":
                 if (listacarrito.size() > 0) {
 
                     idusu = Integer.parseInt(request.getParameter("idusu"));
@@ -544,18 +572,143 @@ public class CtrProductoLi extends HttpServlet {
                     String correoenvio = "farmaciayasbel@gmail.com";
                     String contrasena = "xybdpcjtapwenajq";
                     String destinatario = sesion.getAttribute("correo").toString();
+
                     System.out.println("correo del usuario : " + sesion.getAttribute("correo").toString());
                     String Asunto = "Pedido Generado";
-                    String Mensaje = "Estimado cliente " + sesion.getAttribute("User").toString() + "\n\n Su pedido ha sido gerenerado satisfactoriamente," + "\n\n detalle de su pedido: " + "\n\nNumero Pedido: " + idpe + "\nFecha: " + fec + "\nValor: " + mon + "\nEstado: " + estado;
-
+                    String Mensaje = "<!DOCTYPE html>\n"
+                            + "<html lang='es'>\n"
+                            + "<head>\n"
+                            + "    <meta charset='UTF-8'>\n"
+                            + "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
+                            + "    <title>Correo Empresarial</title>\n"
+                            + "    <style>\n"
+                            + "        body {\n"
+                            + "            font-family: Arial, sans-serif;\n"
+                            + "            margin: 0;\n"
+                            + "            padding: 0;\n"
+                            + "            background-color: #f4f4f4;\n"
+                            + "        }\n"
+                            + "        .container {\n"
+                            + "            max-width: 600px;\n"
+                            + "            margin: 0 auto;\n"
+                            + "            background-color: #ffffff;\n"
+                            + "            border: 1px solid #dddddd;\n"
+                            + "            padding: 20px;\n"
+                            + "        }\n"
+                            + "        .header {\n"
+                            + "            text-align: center;\n"
+                            + "            padding: 10px 0;\n"
+                            + "            background-color: #74BD64;\n"
+                            + "            color: white;\n"
+                            + "        }\n"
+                            + "        .header img {\n"
+                            + "            max-width: 570px;\n"
+                            + "        }\n"
+                            + "        .content {\n"
+                            + "            text-align: center;\n"
+                            + "            padding: 40px 20px;\n"
+                            + "        }\n"
+                            + "        .content h2 {\n"
+                            + "            color: #333333;\n"
+                            + "            font-size: 22px;\n"
+                            + "            margin-bottom: 10px;\n"
+                            + "        }\n"
+                            + "        .content p {\n"
+                            + "            color: #555555;\n"
+                            + "            font-size: 16px;\n"
+                            + "        }\n"
+                            + "        .content img {\n"
+                            + "            width: 100px;\n"
+                            + "            height: 100px;\n"
+                            + "            border-radius: 50%;\n"
+                            + "            margin-bottom: 20px;\n"
+                            + "            margin-top: 20px;\n"
+                            + "        }\n"
+                            + "        .footer {\n"
+                            + "            background-color: #74BD64;\n"
+                            + "            padding: 20px 0;\n"
+                            + "            color: white;\n"
+                            + "            text-align: center;\n"
+                            + "        }\n"
+                            + "        .footer .footer-lists {\n"
+                            + "            display: flex;\n"
+                            + "            justify-content: center;\n"
+                            + "            text-align: center;\n"
+                            + "            padding-bottom: 20px;\n"
+                            + "        }\n"
+                            + "        .footer .footer-lists > div {\n"
+                            + "            margin: 0 20px;\n"
+                            + "        }\n"
+                            + "        .footer ul {\n"
+                            + "            list-style: none;\n"
+                            + "            padding: 0;\n"
+                            + "        }\n"
+                            + "        .footer h3 {\n"
+                            + "            font-size: 18px;\n"
+                            + "            margin-bottom: 10px;\n"
+                            + "            color: #559D46;\n"
+                            + "        }\n"
+                            + "        .footer li {\n"
+                            + "            font-size: 14px;\n"
+                            + "            color: white;\n"
+                            + "            margin-bottom: 8px;\n"
+                            + "        }\n"
+                            + "        .footer li img {\n"
+                            + "            vertical-align: middle;\n"
+                            + "            margin-right: 10px;\n"
+                            + "            max-width: 20px;\n"
+                            + "        }\n"
+                            + "        .footer p {\n"
+                            + "            text-align: center;\n"
+                            + "            color: white;\n"
+                            + "            margin: 10px 0 0;\n"
+                            + "        }\n"
+                            + "    </style>\n"
+                            + "</head>\n"
+                            + "<body>\n"
+                            + "    <div class='container'>\n"
+                            + "        <div class='header'>\n"
+                            + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
+                            + "        </div>\n"
+                            + "        <div class='content'>\n"
+                            + "            <h2>Estimado cliente</h2>\n"
+                            + "            <img src='https://i.pinimg.com/originals/9c/15/16/9c15164f48b527ea72d6d1b418f910e0.gif' alt='imagen de contenido'>\n"
+                            + "            <p>Su pedido está en proceso, por favor espere un tiempo máximo de 24 horas.</p>\n"
+                            + "             <p>Número Pedido: " + idpe + "</p>\n"
+                            + "        <p>Fecha: " + fec + "</p>\n"
+                            + "        <p>Valor: " + mon + "</p>\n"
+                            + "        <p>Estado: " + esss + "</p>\n"
+                            + "        </div>\n"
+                            + "        <div class='footer'>\n"
+                            + "            <div class='footer-lists'>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Información</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li>Dirección: Calle 51d #2g-63</li>\n"
+                            + "                        <li>Teléfono: 324 6794400</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Redes Sociales</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/016/716/447/non_2x/facebook-icon-free-png.png'/> Facebook</li>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png'/> Instagram</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "            </div>\n"
+                            + "            <p>© 2024 FARMACIA YASBEL.</p>\n"
+                            + "        </div>\n"
+                            + "    </div>\n"
+                            + "</body>\n"
+                            + "</html>";
                     MimeMessage mail = new MimeMessage(session1);
 
                     try {
                         mail.setFrom(new InternetAddress(correoenvio));
                         mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
                         mail.setSubject(Asunto);
-                        mail.setText(Mensaje);
-                        //mail.setContent(Mensaje, "text/html");
+                        //mail.setText(Mensaje);
+                        mail.setContent(Mensaje, "text/html");
 
                         Transport transporte = session1.getTransport("smtp");
                         transporte.connect(correoenvio, contrasena);
@@ -588,7 +741,7 @@ public class CtrProductoLi extends HttpServlet {
                 break;
             case "Epedidos":
                 String idActu = request.getParameter("idp");
-
+                System.out.println("Actualizar estado de pedido: " + idActu);
                 boolean actualizado = peddao.estadoPED(idActu, "enviado");
 
                 if (actualizado) {
@@ -638,7 +791,7 @@ public class CtrProductoLi extends HttpServlet {
                     }
 
                 }
-                break;
+                break; 
             case "olvido":
 
                 request.getRequestDispatcher("Vistas/RecuperarContrs.jsp").forward(request, response);
@@ -671,7 +824,64 @@ public class CtrProductoLi extends HttpServlet {
                     String destinatario = us.getUsucorreo();
 
                     String Asunto = "Pedido Generado";
-                    String Mensaje = "Estimado cliente " + us.getUsunombre() + " por favor si quiere cambiar la contraseña ingrese al siguiente link \n" + "http://localhost:8080/FarmaciaWeb/CtrProductoLi?accion=nuevacont&id=" + us.getUsuid();
+
+                    String Mensaje
+                            = "<!DOCTYPE html>\n"
+                            + "<html lang='es'>\n"
+                            + "<head>\n"
+                            + "    <meta charset='UTF-8'>\n"
+                            + "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
+                            + "    <title>Correo Empresarial</title>\n"
+                            + "    <style>\n"
+                            + "        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }\n"
+                            + "        .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; padding: 20px; }\n"
+                            + "        .header { text-align: center; padding: 10px 0; background-color: #74BD64; color: white; }\n"
+                            + "        .header img { max-width: 570px; }\n"
+                            + "        .content { text-align: center; padding: 40px 20px; }\n"
+                            + "        .content h2 { color: #333333; font-size: 22px; margin-bottom: 10px; }\n"
+                            + "        .content p { color: #555555; font-size: 16px; }\n"
+                            + "        .footer { background-color: #74BD64; padding: 20px 0; color: white; text-align: center; }\n"
+                            + "        .footer .footer-lists { display: flex; justify-content: center; text-align: center; padding-bottom: 20px; }\n"
+                            + "        .footer .footer-lists > div { margin: 0 20px; }\n"
+                            + "        .footer ul { list-style: none; padding: 0; }\n"
+                            + "        .footer h3 { font-size: 18px; margin-bottom: 10px; color: #559D46; }\n"
+                            + "        .footer li { font-size: 14px; color: white; margin-bottom: 8px; }\n"
+                            + "        .footer li img { vertical-align: middle; margin-right: 10px; max-width: 20px; }\n"
+                            + "        .footer p { text-align: center; color: white; margin: 10px 0 0; }\n"
+                            + "    </style>\n"
+                            + "</head>\n"
+                            + "<body>\n"
+                            + "    <div class='container'>\n"
+                            + "        <div class='header'>\n"
+                            + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
+                            + "        </div>\n"
+                            + "        <div class='content'>\n"
+                            + "            <h2>Estimado cliente, " + us.getUsunombre() + "</h2>\n"
+                            + "            <p>Por favor, si desea cambiar su contraseña, ingrese al siguiente enlace:</p>\n"
+                            + "            <p><a href='http://localhost:8080/FarmaciaWeb/CtrProductoLi?accion=nuevacont&id=" + us.getUsuid() + "'>Cambiar contraseña</a></p>\n"
+                            + "        </div>\n"
+                            + "        <div class='footer'>\n"
+                            + "            <div class='footer-lists'>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Información</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li>Dirección: Calle 51d #2g-63</li>\n"
+                            + "                        <li>Teléfono: 324 6794400</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Redes Sociales</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/016/716/447/non_2x/facebook-icon-free-png.png'/> Facebook</li>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png'/> Instagram</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "            </div>\n"
+                            + "            <p>© 2024 FARMACIA YASBEL. Todos los derechos reservados.</p>\n"
+                            + "        </div>\n"
+                            + "    </div>\n"
+                            + "</body>\n"
+                            + "</html>";
 
                     MimeMessage mail = new MimeMessage(session1);
 
@@ -679,8 +889,8 @@ public class CtrProductoLi extends HttpServlet {
                         mail.setFrom(new InternetAddress(correoenvio));
                         mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
                         mail.setSubject(Asunto);
-                        mail.setText(Mensaje);
-                        //mail.setContent(Mensaje, "text/html");
+                        //mail.setText(Mensaje);
+                        mail.setContent(Mensaje, "text/html");
 
                         Transport transporte = session1.getTransport("smtp");
                         transporte.connect(correoenvio, contrasena);
