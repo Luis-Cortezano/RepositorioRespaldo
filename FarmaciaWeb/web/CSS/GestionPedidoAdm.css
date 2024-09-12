@@ -1,0 +1,145 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/08/2024, 09:16:57 AM
+    Author     : HPLAPTOP01
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eafaf2;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  
+  .header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #28a745;
+    margin: 0;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .button.primary {
+    background-color: #28a745;
+  }
+  
+  .button.primary:hover {
+    background-color: #218838;
+  }
+  
+  .button.icon {
+    padding: 6px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #28a745;
+    color: #28a745;
+  }
+  
+  .button.icon.success {
+    background-color: #d4edda;
+  }
+  
+  .button.icon.info {
+    background-color: #cce5ff;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .badge.pending {
+    background-color: #ffc107;
+  }
+  
+  .badge.paid {
+    background-color: #28a745;
+  }
+  
+  .font-medium {
+    font-weight: 600;
+  }
+  
+  .text-muted {
+    color: #6c757d;
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
