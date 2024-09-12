@@ -29,55 +29,52 @@
         <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
             <a class="navbar-brand" href="/FarmaciaWeb/CtrProductoLi?accion=home">
                 <img src="/FarmaciaWeb/Imagenes/lo-removebg-preview.png" class="icon" width="60px" height="60px"/>
-                Farmacia yasbel
+                Farmacia Yasbel
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Formulario de búsqueda -->
                 <form class="form-inline my-2 my-lg-0 mr-auto" action="/FarmaciaWeb/CtrProductoLi?accion=buscar" method="post">
                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos..." aria-label="Search" name="busqueda">
                     <button class="btn-search my-2 my-sm-0" type="submit">
                         <div class="original">BUSCAR</div>
-
                     </button>
                 </form>
 
                 <ul class="navbar-nav">
+                    <!-- Mi Cuenta -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-text-white" href="#" id="navbarDropdownCuenta" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="bi bi-person"></i> Mi Cuenta
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownCuenta">
                             <a class="dropdown-item text-center" href="#"><i class="bi bi-person"></i></a>
-                            <a class="dropdown-item " >${usuario.getUsunombre()}</a>
-                            <a class="dropdown-item " >${usuario.getUsutipo()}</a>
-                            <a class="dropdown-item text-warnig" href="/FarmaciaWeb/CtrProductoLi?accion=admi">Gestion Administrador</a>
-                            <a class="dropdown-item text-danger" href="/FarmaciaWeb/CtrProductoLi?accion=salir">Cerrar Sesion</a>
-
+                            <a class="dropdown-item">${usuario.getUsunombre()}</a>
+                            <a class="dropdown-item">${usuario.getUsutipo()}</a>
+                            <a class="dropdown-item text-warning" href="/FarmaciaWeb/CtrProductoLi?accion=admi">Gestión Administrador</a>
+                            <a class="dropdown-item text-danger" href="/FarmaciaWeb/CtrProductoLi?accion=salir">Cerrar Sesión</a>
                         </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-bookmark"></i> Comprar por categorías
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <c:forEach var="c" items="${categorias}">
-                                <input type="hidden" value="${c.getCatCodigo()}" name="catid" id="catid">
-                                <li><a class="dropdown-item" href="/FarmaciaWeb/CtrProductoLi?accion=buscarcat&catid=${c.getCatCodigo()}" ><i class="bi bi-bookmarks"></i> ${c.getCatNombre()}</a></li>
-
-                            </c:forEach>
-                        </ul>
                     </li>
                 </ul>
             </div>
         </nav>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br>
+        <!-- Sección de categorías colocada fuera de la barra de navegación -->
+        <div class="categories-section">
+            <div class="container">
+                <h4 class="categories-heading">Categorias</h4>
+                <div class="categories-row">
+                    <c:forEach var="c" items="${categorias}">
+                        <a class="category-item" href="/FarmaciaWeb/CtrProductoLi?accion=buscarcat&catid=${c.getCatCodigo()}">
+                            <i class="bi bi-bookmarks"></i> ${c.getCatNombre()}
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -130,28 +127,29 @@
             </a>
         </div>
         <br>
-        <br>
         <div class="offer-banner">
-            <p class="offer-text">Explora nuestras <span class="discount">categorías</span> en la Farmacia Yasbel</p>
+            <p class="offer-text">Explora nuestros <span class="discount">Descuentos</span> en la Farmacia Yasbel</p>
             <div class="offer-cards">
                 <c:forEach var="prod" items="${descuento}">
-                    <div class="col-md-3 col-sm-6 mb-4"> <!-- Cambiado col-md-4 a col-md-3 para 4 por fila -->
-                        <div class="card h-100">
-                            <img src="${prod.getProFoto()}" class="card-img-top" alt="${prod.getProNombre()}">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${prod.getProNombre()}</h5>
-                                <p class="card-text">${prod.getProDescripcion()}</p>
-                                <p class="card-text">${prod.getProDescuento()}</p>
-
-                                <div class="mt-auto">
-                                    <a href="/FarmaciaWeb/CtrProductoLi?accion=Listaradm" class="btn btn-secondary ml-2">Editar</a>
-                                </div>
-                            </div>
+                    <div class="offer-card">
+                        <div class="card-header">
+                            <img src="${prod.getProFoto()}" class="card-image" alt="${prod.getProNombre()}">
+                            <div class="discount-badge">${prod.getProDescuento()}%</div>
+                        </div>
+                        <h5 class="card-title">${prod.getProNombre()}</h5>
+                        <p class="card-text">${prod.getProDescripcion()}</p>
+                        <p class="card-price">$${prod.getProPrecio()}</p>
+                        <div class="mt-auto">
+                            <a href="/FarmaciaWeb/CtrProductoLi?accion=Listaradm" class="btn btn-secondary ml-2">Editar</a>
                         </div>
                     </div>
                 </c:forEach>
             </div>
             <div class="rotating-light"></div>
+            <div class="carousel-controls">
+                <button class="carousel-prev">&lt;</button>
+                <button class="carousel-next">&gt;</button>
+            </div>
         </div>
 
         <br>
@@ -262,5 +260,6 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 crossorigin="anonymous"></script>
 <script src="/FarmaciaWeb/JS/carrucel_home.js" type="text/javascript"></script>
+<script src="/FarmaciaWeb/JS/Ofertas_home.js" type="text/javascript"></script>
 </body>
 </html>
