@@ -91,7 +91,7 @@
                     </div>
                     <div class="carousel-caption d-none d-md-block">
                         <div class="promo-banner">
-                            <span>HEY! <strong>2x1</strong> En medicamentos!</span>
+                            <span><strong>Tu salud es primero</strong></span>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="carousel-caption d-none d-md-block">
                         <div class="promo-banner">
-
+                            <span><strong>Tu salud es primero</strong></span>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="carousel-caption d-none d-md-block">
                         <div class="promo-banner">
-                            <span>HEY! <strong>2x1</strong> En medicamentos!</span>
+                            <span><strong>Tu salud es primero</strong></span>
                         </div>
                     </div>
                 </div>
