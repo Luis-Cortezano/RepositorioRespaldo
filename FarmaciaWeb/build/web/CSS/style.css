@@ -1,0 +1,828 @@
+/* Estilos generales del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos del header */
+header {
+    background: #2c3e50;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+.navbar-brand h1 {
+    margin: 0;
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1em;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding: 0.5em 1em;
+}
+
+.navbar-menu a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: #FFD700;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: 0;
+}
+
+.navbar-menu a:hover::before {
+    transform: translateX(0);
+}
+
+.navbar-menu a:hover {
+    color: #2c3e50;
+}
+
+.navbar-menu a span {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar-custom {
+    background-color: #559D46;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.2rem;
+    color: #ccc;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFD700;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #fff;
+    transition: transform 0.3s;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-nav .nav-link i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s;
+}
+
+.navbar-toggler-icon {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler.active .navbar-toggler-icon {
+    transform: rotate(45deg);
+}
+
+.dropdown-menu {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+}
+
+.nav-text-white {
+    color: #fff !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+    
+    .navbar-menu a {
+        margin: 0;
+        padding: 0.5em;
+    }
+}
+
+.product-container {
+    padding: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em; 
+}
+
+.card {
+    flex: 1 1 calc(25% - 1em); /* Ajusta el tamaño para que quepan 4 tarjetas por fila */
+    background: linear-gradient(135deg, #ffffff, #e6e6e6); 
+    border-radius: 15px; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5em; 
+    padding: 1em;
+    box-sizing: border-box;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03); 
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2), 0 6px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.card-img-top {
+    width: 100%;
+    height: 150px; /* Ajustado para que las tarjetas sean menos largas */
+    object-fit: cover;
+    border-radius: 12px;
+    padding: 0.5em;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-img-top:hover {
+    transform: translateY(-10px) scale(1.05); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.card-body {
+    padding: 1.2em;
+    text-align: center;
+    color: #333; 
+    font-family: 'Arial', sans-serif;
+}
+
+.card-title {
+    font-size: 1.1em; 
+    font-weight: bold;
+    margin: 0.7em 0;
+    color: #357c28; 
+}
+
+.card-text {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 1.5em;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 1em;
+    border-top: 1px solid #ddd; 
+}
+
+.card-footer a {
+    text-decoration: none;
+    font-size: 0.9em;
+    color: #559d46; 
+    transition: color 0.3s ease;
+}
+
+.card-footer a:hover {
+    color: #94dd81; 
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+.btn-search {
+    border: 1px solid #000;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #fff;
+    cursor: pointer;
+    height: 38px;
+    width: 100px;
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.btn-search:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+.btn-search .original {
+    display: flex;
+    font-weight: bold;
+    color: #fff;
+    z-index: 1;
+    position: relative;
+}
+
+.btn-search .letters {
+    display: inline-flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.btn-search:hover .letters {
+    opacity: 1;
+}
+
+.btn-search span {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.2s;
+}
+
+.btn-search:hover span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn-search:hover span:nth-child(2) { transition-delay: 0.1s; }
+.btn-search:hover span:nth-child(3) { transition-delay: 0.2s; }
+.btn-search:hover span:nth-child(4) { transition-delay: 0.3s; }
+.btn-search:hover span:nth-child(5) { transition-delay: 0.4s; }
+.btn-search:hover span:nth-child(6) { transition-delay: 0.5s; }
+
+/* Estilos del banner de ofertas */
+.offer-banner {
+    background: linear-gradient(135deg, #85c1e9, #2874a6); /* Azules personalizados para Yasbel */
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 1200px; /* Aumenta el ancho máximo para acomodar las tarjetas */
+    animation: glow 3s ease-in-out infinite;
+}
+
+.offer-text {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin: 0;
+    z-index: 1;
+    position: relative;
+    padding: 0 15px;
+}
+
+.discount {
+    color: #ff5733; /* Naranja vibrante */
+    animation: pulse 2s infinite;
+}
+
+.offer-cards {
+    display: flex;
+    overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+    gap: 30px; /* Espacio entre tarjetas */
+    padding-top: 20px;
+    position: relative; /* Para posicionar los botones laterales */
+}
+
+.offer-card {
+    background-color: #fff;
+    color: #333;
+    border-radius: 10px;
+    width: 350px; /* Aumenta el ancho de la tarjeta */
+    height: 400px; /* Ajusta la altura de la tarjeta */
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.offer-card:hover {
+    transform: scale(1.05); /* Zoom cuando la tarjeta es activa */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: 125px; /* Ajusta la altura de la imagen */
+    object-fit: cover;
+    border-bottom: 3px solid #2874a6; /* Azul característico de Yasbel */
+    margin-bottom: 15px;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff5733; 
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    color: #2874a6; 
+    margin-bottom: 10px;
+}
+
+.card-price {
+    font-size: 1.4rem;
+    color: #2874a6; 
+    margin-bottom: 15px;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 10px;
+}
+
+.card-buttons .btn {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 47%; /* Botones más grandes y mejor distribuidos */
+    text-align: center;
+}
+
+.card-buttons .btn-primary {
+    background-color: #2874a6;
+}
+
+.card-buttons .btn-primary:hover {
+    background-color: #1f5a8c;
+    transform: scale(1.05); 
+}
+
+.card-buttons .btn-secondary {
+    background-color: #ff5733;
+}
+
+.card-buttons .btn-secondary:hover {
+    background-color: #d44e2d;
+    transform: scale(1.05); 
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+
+.carousel-prev, .carousel-next {
+    background-color: #2874a6;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+    background-color: #ff5733;
+}
+
+.rotating-light {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    z-index: 0;
+    border-radius: 50%;
+    animation: rotate-light 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate-light {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); }
+    100% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+}
+
+
+/* Estilos del footer */
+#footer {
+    background-color: green;
+    color: #fff;
+    border-top: 3px solid #4CAF50;
+}
+
+.footer-heading {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 1rem;
+}
+
+.payment-icon {
+    transition: transform 0.3s ease;
+}
+
+.payment-icon:hover {
+    transform: scale(1.1);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.social-link {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #4CAF50;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+}
+
+.footer-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    .offer-banner {
+        padding: 15px;
+    }
+    
+    .offer-text {
+        font-size: 1.2rem;
+    }
+}
+
+  .modal-content {
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+    .modal-header {
+        background: #007bff;
+        color: white;
+        border-radius: 10px 10px 0 0;
+        padding: 1rem 1.5rem;
+    }
+    .modal-title {
+        font-weight: 600;
+    }
+    .custom-input,
+    .custom-select,
+    .custom-textarea {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        transition: border-color 0.2s ease-in-out;
+    }
+    .custom-input:focus,
+    .custom-select:focus,
+    .custom-textarea:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+    }
+    .custom-btn {
+        background: #007bff;
+        border: none;
+        border-radius: 5px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+    }
+    .custom-btn:hover {
+        background: #0056b3;
+    }
+   /* Estilo para el modal */
+.modal-content {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    background-color: #357c28; /* Verde oscuro */
+    color: white;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.btn-close {
+    filter: invert(100%);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: .5rem;
+    color: #357c28; /* Verde oscuro */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #559d46; /* Verde medio */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 150, 0, 0.2);
+}
+
+.button {
+    background-color: #559d46; /* Verde medio */
+    color: white;
+    padding: .75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #357c28; /* Verde oscuro */
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 1rem;
+    background-color: #eaeaea;
+    color: #333;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+}
+
+.modal-footer p {
+    margin: 0;
+}
+
+    
+.btn-primary {
+    background-color: #357c28; 
+    color: #fff; 
+    border: none;
+    border-radius: 25px; 
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase; 
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #559d46; 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+}
+
+
+.btn-secondary {
+    background-color: #e0e0e0; 
+    color: #333; 
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #cccccc; 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.btn-primary, .btn-secondary {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    margin: 0.5em 0;
+}
+
+.btn-primary:active, .btn-secondary:active {
+    transform: translateY(0); 
+    box-shadow: none; 
+}
+.promo-banner {
+  background-color: #ffdb00;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.promo-banner strong {
+  font-size: 36px;
+}
+.carousel-content {
+    position: relative;
+    max-height: 450px; /* Ajustar la altura del carrusel */
+}
+
+.large-image {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    max-height: 400px; 
+}
+
+.promo-banner {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 20px;
+    border-radius: 10px; 
+    max-width: 400px; 
+    text-align: center; 
+    position: absolute;
+    top: 20%; 
+    left: 20%; 
+    transform: translate(-50%, -50%); 
+    color: #fff; 
+}
+
+.promo-banner span {
+    font-size: 1.8rem; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    display: block; 
+    margin-bottom: 5px; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+}
+
+.promo-banner strong {
+    color: #ffcc00; 
+    font-size: 2.2rem; 
+}
+
+.mini-images {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.mini-image {
+    width: 80px;
+    height: 80px;
+    border: 3px solid white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.mini-image.active-mini {
+    opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1); 
+}

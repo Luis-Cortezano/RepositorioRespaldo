@@ -1,0 +1,226 @@
+// To parse this JSON data, do
+//
+//     final product = productFromJson(jsonString);
+
+import 'dart:convert';
+
+List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
+
+String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class Product {
+    int id;
+    String nombre;
+    int precio;
+    String descripcion;
+    DateTime createdAt;
+    DateTime updatedAt;
+
+    Product({
+        required this.id,
+        required this.nombre,
+        required this.precio,
+        required this.descripcion,
+        required this.createdAt,
+        required this.updatedAt,
+    });
+
+    factory Product.fromJson(Map<String, dynamic> json) => Product(
+        id: json["id"],
+        nombre: json["nombre"],
+        precio: json["precio"],
+        descripcion: json["descripcion"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "nombre": nombre,
+        "precio": precio,
+        "descripcion": descripcion,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+    };
+}
+
+
+
+
+import 'package:flutter/material.dart';
+
+class CargaPage extends StatelessWidget {
+  const CargaPage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator());
+  }
+}
+
+
+import 'package:api_corte/models/product.dart';
+import 'package:api_corte/widgets/product_page.dart';
+import 'package:flutter/material.dart';
+
+
+class DatosPage extends StatelessWidget {
+  final List<Product> products;
+  const DatosPage({
+    Key? key,required this.products,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: products.length,
+      itemBuilder: (context, index){
+        final product = products[index];
+        return ListTile(
+              title: Text(product.nombre, ),
+              subtitle: Text(product.descripcion),
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProductPage(product: product)),
+                );
+              },
+        );
+      }
+    );
+  }
+
+}
+
+
+
+import 'package:flutter/material.dart';
+
+class ErrorPage extends StatelessWidget {
+  const ErrorPage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('ERROR'));
+  }
+}
+
+
+
+
+import 'package:api_corte/models/product.dart';
+import 'package:flutter/material.dart';
+
+
+class ProductPage extends StatelessWidget {
+  final Product product;
+
+  const ProductPage({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Detalle de Producto')),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            
+            SizedBox(height: 20),
+            Text(
+              product.nombre,
+              
+            ),
+            SizedBox(height: 10),
+            Text('Precio: \$${product.precio.toString()}',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+            Text('Descripción:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 5),
+            Text(product.descripcion, style: TextStyle(fontSize: 16)),
+            SizedBox(height: 10),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+import 'dart:convert';
+import 'package:api_corte/models/product.dart';
+import 'package:http/http.dart' as http;
+import 'package:api_corte/widgets/carga_page.dart';
+import 'package:api_corte/widgets/datos_page.dart';
+import 'package:api_corte/widgets/error_page.dart';
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Lista de Productos')),
+      body: FutureBuilder<List<Product>>(
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              return const ErrorPage();
+            } else if (snapshot.hasData) {
+              return DatosPage(products: snapshot.data!);
+            }
+          }
+          return const CargaPage();
+        },
+        future: getData(),
+      ),
+    );
+  }
+
+  Future<List<Product>> getData() async {
+    final url = Uri.https('f074-8-242-188-66.ngrok-free.app', '/products');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final List jsonData = jsonDecode(response.body);
+      return jsonData.map((item) => Product.fromJson(item)).toList();
+    } else {
+      throw 'Error en la petición';
+    }
+  }
+}
+
+
+
+import 'package:api_corte/home_page.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My App',
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
+  }
+}

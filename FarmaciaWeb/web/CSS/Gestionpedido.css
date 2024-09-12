@@ -1,0 +1,100 @@
+
+.navbar-custom {
+  background-color: #559D46;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0.5em 1em; 
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: transform 0.3s;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s;
+}
+
+.navbar-toggler-icon {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler.active .navbar-toggler-icon {
+  transform: rotate(45deg);
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.2rem;
+  color: #ccc;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #FFD700;
+}
+
+.navbar-nav .nav-link i {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+}
+
+.nav-text-white {
+  color: #fff !important;
+}
+
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-form .form-control {
+  margin-right: 0.5em;
+}
+
+.search-form .btn-search {
+  background-color: #000; 
+  color: #fff; 
+  border: none; 
+  padding: 0.5em 1em; 
+  border-radius: 4px; 
+  cursor: pointer; 
+}
+
+.search-form .btn-search:hover {
+  background-color: #333; 
+}
+
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  
+  .navbar-nav .nav-item {
+    margin: 0;
+    padding: 0.5em;
+  }
+}
