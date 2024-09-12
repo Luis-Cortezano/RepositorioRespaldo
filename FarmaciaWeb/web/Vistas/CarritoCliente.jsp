@@ -114,7 +114,7 @@
                     </tbody>
                 </table> 
             </div>
-            <form action="/FarmaciaWeb/CtrProductoLi?accion=pedido" method="post">
+            <form action="/FarmaciaWeb/CtrProductoLi?accion=ConfPedido" method="post">
                 <input type="hidden" name="idusu" value="${usuario.getUsuid()}">
                 <input type="hidden" name="totalp" value="${totalpagar}">
                 <div class="card-body">

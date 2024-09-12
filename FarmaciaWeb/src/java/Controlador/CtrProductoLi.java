@@ -180,6 +180,7 @@ public class CtrProductoLi extends HttpServlet {
             case "salir":
 
                 sesion.invalidate();
+                listacarrito.removeAll(listacarrito);
                 response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
                 break;
 
@@ -480,11 +481,11 @@ public class CtrProductoLi extends HttpServlet {
                 System.out.println("entro actualizar cantidad cantidad = " + can);
                 System.out.println("lista carrito : " + listacarrito.size());
                 for (int i = 0; i < listacarrito.size(); i++) {
-                System.out.println("lista carrito descuento : " + i);
+                    System.out.println("lista carrito descuento : " + i);
                     if (idpro == listacarrito.get(i).getIdproducto()) {
                         listacarrito.get(i).setCantidad(can);
                         listacarrito.get(i).setDescuento(listacarrito.get(i).getCantidad() * listacarrito.get(i).getPreciocompra() * listacarrito.get(i).getDescuento() / 100);
-                        System.out.println("cantidad : " +listacarrito.get(i).getCantidad() );
+                        System.out.println("cantidad : " + listacarrito.get(i).getCantidad());
                         System.out.println("precio : " + listacarrito.get(i).getPreciocompra());
                         System.out.println("descuento : " + listacarrito.get(i).getDescuento());
                         int st = listacarrito.get(i).getPreciocompra() * can;
@@ -703,6 +704,24 @@ public class CtrProductoLi extends HttpServlet {
                 String contrasenaencriptada = encriptarcontrasena(contrase);
                 boolean cont = usudao.ActualizarCon(idcu, contrasenaencriptada);
                 request.getRequestDispatcher("Vistas/LogginPage.jsp").forward(request, response);
+                break;
+
+            case "ConfPedido":
+                System.out.println("entro a comfirmacion de pedido");
+
+                int idpe = peddao.listarU();
+                System.out.println("idpedido: " + idpe);
+                for (int i = 0; i < listacarrito.size(); i++) {
+
+                }
+                productos = pdao.listarT();
+                request.setAttribute("carrito", listacarrito);
+                request.setAttribute("productos", productos);
+                listacarrito.removeAll(listacarrito);
+
+                request.setAttribute("pedido", pedidos);
+
+                request.getRequestDispatcher("Vistas/ConfirmacionPedido.jsp").forward(request, response);
                 break;
         }
     }
