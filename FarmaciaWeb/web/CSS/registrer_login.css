@@ -1,0 +1,138 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/09/2024, 05:32:26 PM
+    Author     : Jashir
+*/
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/09/2024, 12:48:56 PM
+    Author     : Jashir
+*/
+
+/* Estilos para el formulario */
+.form_input2 {
+    display: grid;
+    gap: 15px;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-container {
+    display: grid;
+    gap: 15px;
+}
+
+/* Estilos para cada campo de entrada */
+.type {
+    position: relative;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* Añadido padding extra para el icono */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Icono de validación */
+.bi-check-circle,
+.bi-x-circle-fill {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+/* Icono de error oculto por defecto */
+.bi-x-circle-fill {
+    color: #e74c3c;
+    display: none;
+}
+
+/* Mostrar el icono de error cuando el campo es inválido */
+.formulario_grupo-incorrecto .bi-x-circle-fill {
+    display: block;
+}
+
+/* Icono de validación correcto */
+.bi-check-circle {
+    color: #357c28;
+    display: none;
+}
+
+/* Mostrar el icono de validación cuando el campo es válido */
+.formulario_grupo-correcto .bi-check-circle {
+    display: block;
+}
+
+/* Mensaje de error */
+.formulario_input-error {
+    color: #e74c3c;
+    font-size: 14px;
+    display: none; /* Oculto por defecto */
+}
+
+/* Mostrar el mensaje de error cuando el campo es inválido */
+.formulario_grupo-incorrecto .formulario_input-error {
+    display: block;
+}
+
+/* Estilo para el botón */
+.btn.bkg {
+    background-color: #357c28;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.btn.bkg:hover {
+    background-color: #2a5a1d;
+}
+
+.btn.bkg i {
+    margin-left: 10px;
+}
+
+/* Estilos para el selector */
+.form-control.formulario_input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.formulario_label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.col {
+    margin-bottom: 15px;
+}
