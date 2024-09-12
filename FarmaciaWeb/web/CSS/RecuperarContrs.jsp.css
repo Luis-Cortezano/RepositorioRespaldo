@@ -1,0 +1,116 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3/09/2024, 01:30:11 AM
+    Author     : HOME
+*/
+
+body {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.icon-container {
+  margin-bottom: 30px;
+  margin-top: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-circle {
+  background-color: #9fd78c;
+  border-radius: 50%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 180px;
+  height: auto;
+}
+
+.container {
+  background-color: #357c28;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #b4fd9f;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.input-usuario {
+  background-color: #ffffff;
+  border: none;
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto 20px auto;
+  border-radius: 5px;
+  color: #000000;
+  font-size: 16px;
+}
+
+button {
+  background-color: #b4fd9f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #357c28;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #9fd78c;
+}
+
+.barra-button {
+  background-color: #357c28;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  color: #9fd78c;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  left: 10px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barra-button:hover {
+  background-color: #559d46;
+}
+
+.barra-icon {
+  font-size: 20px;
+}
+
+
