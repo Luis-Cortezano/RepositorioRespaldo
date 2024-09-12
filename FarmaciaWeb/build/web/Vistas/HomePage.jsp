@@ -133,7 +133,7 @@
         </div>
         <br>
         <br>
-       <div class="offer-banner"> 
+       <div class="offer-banner">
     <p class="offer-text">Explora nuestros <span class="discount">15% de Descuento</span> en la Farmacia Yasbel</p>
     <div class="offer-cards">
         <c:forEach var="prod" items="${descuento}">
