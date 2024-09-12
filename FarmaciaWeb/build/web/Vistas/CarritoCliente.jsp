@@ -67,20 +67,6 @@
 
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-bookmark"></i> Comprar por categorías
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <c:forEach var="c" items="${categorias}">
-                                <input type="hidden" value="${c.getCatCodigo()}" name="catid" id="catid">
-                                <li><a class="dropdown-item" href="/FarmaciaWeb/CtrProductoLi?accion=buscarcat&catid=${c.getCatCodigo()}" ><i class="bi bi-bookmarks"></i> ${c.getCatNombre()}</a></li>
-
-                            </c:forEach>
-                        </ul>
-
-                    </li>
                 </ul>
             </div>
         </nav>

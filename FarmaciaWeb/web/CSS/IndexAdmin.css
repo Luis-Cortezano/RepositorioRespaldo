@@ -314,3 +314,35 @@ body {
 .carousel-thumbnails img:hover {
     transform: scale(1.1);
 }
+
+.categories-section {
+    padding: 20px 0;
+    background-color: #f8f9fa; /* Cambia el color de fondo según tu diseño */
+}
+
+.categories-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.categories-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category-item {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #ffffff; /* Cambia el color de fondo según tu diseño */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.category-item:hover {
+    background-color: #e9ecef; /* Cambia el color de fondo al pasar el ratón según tu diseño */
+}

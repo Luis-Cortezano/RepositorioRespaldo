@@ -61,24 +61,25 @@
                             (<label style="color: darkorange">${contador}</label>)
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-bookmark"></i> Comprar por categorías
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <c:forEach var="c" items="${categorias}">
-                                <a class="dropdown-item" href="/FarmaciaWeb/CtrProductoLi?accion=buscarcat&catid=${c.getCatCodigo()}">
-                                    <i class="bi bi-bookmarks"></i> ${c.getCatNombre()}
-                                </a>
-                            </c:forEach>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
         </nav>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br>
+        <!-- Contenedor de categorías debajo del navbar -->
+        <div class="categories-section">
+            <div class="container">
+                <h2 class="categories-heading">Explora nuestras categorías</h2>
+                <div class="categories-row">
+                    <c:forEach var="c" items="${categorias}">
+                        <a class="category-item" href="/FarmaciaWeb/CtrProductoLi?accion=buscarcat&catid=${c.getCatCodigo()}">
+                            <i class="bi bi-bookmarks"></i> ${c.getCatNombre()}
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+
         <br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -131,35 +132,31 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <br>
-        <br>
-       <div class="offer-banner">
-    <p class="offer-text">Explora nuestros <span class="discount">15% de Descuento</span> en la Farmacia Yasbel</p>
-    <div class="offer-cards">
-        <c:forEach var="prod" items="${descuento}">
-            <div class="offer-card">
-                <div class="card-header">
-                    <img src="${prod.getProFoto()}" class="card-image" alt="${prod.getProNombre()}">
-                    <div class="discount-badge">${prod.getProDescuento()}%</div>
-                </div>
-                <h5 class="card-title">${prod.getProNombre()}</h5>
-                <p class="card-text">${prod.getProDescripcion()}</p>
-                <p class="card-price">$${prod.getProPrecio()}</p>
-                <div class="card-buttons">
-                    <a href="/FarmaciaWeb/CtrProductoLi?accion=Comprar&id=${prod.getProCodigo()}" class="btn btn-primary">Comprar</a>
-                    <a href="/FarmaciaWeb/CtrProductoLi?accion=AgregarCarrito&id=${prod.getProCodigo()}" class="btn btn-secondary">Agregar al carrito</a>
-                </div>
+        <div class="offer-banner">
+            <p class="offer-text">Explora nuestros <span class="discount">Descuento</span> en la Farmacia Yasbel</p>
+            <div class="offer-cards">
+                <c:forEach var="prod" items="${descuento}">
+                    <div class="offer-card">
+                        <div class="card-header">
+                            <img src="${prod.getProFoto()}" class="card-image" alt="${prod.getProNombre()}">
+                            <div class="discount-badge">${prod.getProDescuento()}%</div>
+                        </div>
+                        <h5 class="card-title">${prod.getProNombre()}</h5>
+                        <p class="card-text">${prod.getProDescripcion()}</p>
+                        <p class="card-price">$${prod.getProPrecio()}</p>
+                        <div class="card-buttons">
+                            <a href="/FarmaciaWeb/CtrProductoLi?accion=Comprar&id=${prod.getProCodigo()}" class="btn btn-primary">Comprar</a>
+                            <a href="/FarmaciaWeb/CtrProductoLi?accion=AgregarCarrito&id=${prod.getProCodigo()}" class="btn btn-secondary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
-        </c:forEach>
-    </div>
-    <div class="rotating-light"></div>
-    <div class="carousel-controls">
-        <button class="carousel-prev">&lt;</button>
-        <button class="carousel-next">&gt;</button>
-    </div>
-</div>
-
-
+            <div class="rotating-light"></div>
+            <div class="carousel-controls">
+                <button class="carousel-prev">&lt;</button>
+                <button class="carousel-next">&gt;</button>
+            </div>
+        </div>
         <br>            
         <!-- Products Section -->
         <section id="productos" class="product-container">

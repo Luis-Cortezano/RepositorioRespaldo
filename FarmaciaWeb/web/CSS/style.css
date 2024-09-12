@@ -169,6 +169,72 @@ header {
     }
 }
 
+
+/* Estilo para el contenedor de categorías */
+/* Estilo para la sección de categorías */
+.categories-section {
+     /* Color de fondo suave verde */
+    padding: 2rem 0; /* Espaciado arriba y abajo */
+    text-align: center; /* Centra el texto */
+}
+
+/* Estilo para el encabezado de categorías */
+.categories-heading {
+    font-size: 1.8rem; /* Tamaño de fuente grande pero no exagerado */
+    font-weight: 600; /* Fuente seminegrita */
+    color: #3a6a40; /* Color verde oscuro */
+    margin-bottom: 1.5rem; /* Espacio debajo del título */
+    animation: fadeIn 1.5s ease-out; /* Animación de entrada */
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para el contenedor de categorías */
+.categories-row {
+    display: flex;
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+    white-space: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+    padding: 0 1rem; /* Espaciado horizontal */
+}
+
+/* Estilo para los cuadros de las categorías */
+.category-item {
+    display: inline-block;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: #fff; /* Color del texto */
+    background: #559d46; /* Color verde suave */
+    
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid #8acb8c; /* Borde verde más oscuro */
+    margin-right: 1rem; /* Espacio entre categorías */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+}
+
+.category-item:hover {
+    background: #7464; /* Color verde más oscuro al pasar el mouse */
+    color: #fff; /* Color del texto al pasar el mouse */
+    transform: translateY(-3px); /* Efecto de elevación suave al pasar el mouse */
+}
+
+.category-item i {
+    font-size: 1.8rem; /* Tamaño del icono */
+    margin-bottom: 0.5rem;
+}
+
+
 .card {
     flex: 1 1 250px; /* Ajusta el tamaño para que se mantenga el ancho deseado */
     background: linear-gradient(135deg, #ffffff, #e6e6e6); 
