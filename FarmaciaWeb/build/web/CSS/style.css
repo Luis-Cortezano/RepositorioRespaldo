@@ -171,7 +171,6 @@ header {
 
 
 /* Estilo para el contenedor de categorías */
-/* Estilo para la sección de categorías */
 .categories-section {
      /* Color de fondo suave verde */
     padding: 2rem 0; /* Espaciado arriba y abajo */
@@ -603,7 +602,7 @@ svg {
 }
 
 
-/* Estilos del footer */
+
 #footer {
     background-color: green;
     color: #fff;
