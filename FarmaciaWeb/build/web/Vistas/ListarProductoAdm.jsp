@@ -20,7 +20,7 @@
             response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
         }
     %>
-    
+
     <body>
         <div class="container-fluid">
             <div class="row">
@@ -51,7 +51,7 @@
                                 <path d="m9 18 6-6-6-6"/>
                                 </svg>
                             </button>
-                             <div class="collapsible-content">
+                            <div class="collapsible-content">
                                 <a href="/FarmaciaWeb/CtrProductoLi?accion=inventario" class="collapsible-link submenu-btn">Inventario</a>
                                 <a href="/FarmaciaWeb/CtrProductoLi?accion=gestion" class="collapsible-link submenu-btn">Procesamiento de Pedidos</a>
                                 <a href="/FarmaciaWeb/CtrUsuarioCre?accion=Listar" class="collapsible-link submenu-btn">Gestión de Clientes</a>
@@ -72,7 +72,7 @@
                             </svg>
                             <span class="sr-only">Home</span>
                         </a>
-                       
+
                         <div class="user-menu">
                             <button class="user-btn btn btn-link">
                                 <img src="https://www.w3schools.com/w3images/avatar2.png" width="32" height="32" alt="Avatar" class="avatar">
@@ -92,12 +92,18 @@
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4">
-                                  <form class="form-inline my-2 my-lg-0 mr-auto" action="/FarmaciaWeb/CtrProductoLi?accion=buscarn" method="post">
-                                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos..." aria-label="Search" name="busqueda">
-                                        <button class="btn-search my-2 my-sm-0" type="submit">
-                                            <div class="original">BUSCAR</div>
-                                        </button>
+                                    <!-- Formulario de búsqueda -->
+                                    <form class="form-inline my-2 my-lg-0 mr-auto" action="/FarmaciaWeb/CtrProductoLi?accion=buscarn" method="post">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" placeholder="Buscar productos..." aria-label="Search" name="busqueda">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success" type="submit">
+                                                    BUSCAR
+                                                </button>
+                                            </div>
+                                        </div>
                                     </form>
+
 
                                 </div>
                             </div>

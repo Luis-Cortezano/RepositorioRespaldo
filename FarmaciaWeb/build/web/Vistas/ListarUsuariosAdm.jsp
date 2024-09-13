@@ -86,14 +86,7 @@
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4">
-                                    <form class="search-form d-flex">
-                                        <input type="search" class="form-control" placeholder="Digite nombre">
-                                        <button type="submit" class="btn btn-success" name="accion" value="buscarn" style="background: #74BD64">
-                                            <i class="bi bi-search"></i> Buscar
-                                        </button>
-                                    </form>
-
-
+                                   
 
                                 </div>
                             </div>

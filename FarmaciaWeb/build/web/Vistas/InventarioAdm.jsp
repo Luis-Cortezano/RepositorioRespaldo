@@ -75,8 +75,7 @@
                         </form>
                         <div class="user-menu">
                             <button class="user-btn btn btn-link">
-                                <img src="/placeholder.svg" width="32" height="32" alt="Avatar" class="avatar">
-                                <span class="sr-only">Toggle user menu</span>
+                                
                             </button>
                             <div class="user-menu-content">
                                 <a class="dropdown-item " >${usuario.getUsunombre()}</a>

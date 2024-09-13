@@ -33,7 +33,7 @@ public class ProductoDAO {
                 System.out.println("Se ha establecido una conexcion con la base de datos");
 
             }
-            pstm = con.prepareStatement("select * from tblproductos where ProStock > 0");
+            pstm = con.prepareStatement("select * from tblproductos where ProStock > 0 and ProDescuento = 0");
             resul = pstm.executeQuery();
             while (resul.next()) {
                 Producto prod = new Producto();

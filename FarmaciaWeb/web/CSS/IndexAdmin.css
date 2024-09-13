@@ -271,13 +271,7 @@ body {
     background-color: #fff;
 }
 
-.main-content {
-    margin-left: 50px; /* Deja espacio para el menú lateral */
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: auto; /* Permite el desplazamiento interno si es necesario */
-    height: 100vh; /* Asegura que el contenido se ajuste a la altura de la ventana */
-}
+
 
 .promo-banner {
     background-color: #ffdb00;
@@ -346,3 +340,14 @@ body {
 .category-item:hover {
     background-color: #e9ecef; /* Cambia el color de fondo al pasar el ratón según tu diseño */
 }
+
+
+
+
+
+
+
+
+
+
+

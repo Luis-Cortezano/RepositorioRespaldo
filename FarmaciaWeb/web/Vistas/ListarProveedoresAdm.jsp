@@ -20,7 +20,7 @@
 
     </head>
     <body>
-       <div class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 sidebar">
                     <div class="header d-flex justify-content-between align-items-center mb-3">
@@ -75,7 +75,7 @@
                             </svg>
                             <span class="sr-only">Home</span>
                         </a>
-                                                <div class="user-menu">
+                        <div class="user-menu">
                             <button class="user-btn btn btn-link">
                                 <img src="https://www.w3schools.com/w3images/avatar2.png" width="32" height="32" alt="Avatar" class="avatar">
                                 <span class="sr-only">Toggle user menu</span>
@@ -94,12 +94,18 @@
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4">
-                                    <form class="form-inline mt-4" action=" ">
-                                        <div class="form-group mx-sm-3 mb-2">
-                                            <input type="text" class="form-control" name="busqueda" placeholder="digite nombre">
+                                    <!-- Formulario de búsqueda -->
+                                    <form class="form-inline mt-4" action=" " method="post">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="busqueda" placeholder="Digite nombre">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="bi bi-search"></i> Buscar
+                                                </button>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-success mb-2" name="accion" value="buscarn"><i class="bi bi-search"></i> Buscar</button>
                                     </form>
+
                                 </div>
                             </div>
                             <table class="table table-bordered">
@@ -149,8 +155,8 @@
                 </div>
             </div>
         </div>
-        
-                                  <!-- Modal para agregar un nuevo proveedor -->
+
+        <!-- Modal para agregar un nuevo proveedor -->
         <div class="modal fade" id="agregarProveedorModal" tabindex="-1" role="dialog" aria-labelledby="agregarProveedorModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -199,7 +205,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="/FarmaciaWeb/JS/EliminarProveedor.js" type="text/javascript"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>                        
