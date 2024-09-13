@@ -10,6 +10,8 @@
         <link href="/FarmaciaWeb/CSS/IndexAdmin.css" rel="stylesheet" type="text/css"/>
         <link href="/FarmaciaWeb/CSS/GestionPedidoAdm.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
     </head>
     <body>
         <div class="container-fluid">
@@ -104,7 +106,9 @@
                                                     <div class="actions">
                                                         <input type="hidden" class="idpqr" value="${ped.getPedCodigo()}">
                                                         <input type="hidden" class="id" id="idUsu" name="idUsu" value="${ped.getTblUsuarios()}">
-                                                        <a class="btn btn-success" href="CtrProductoLi?accion=Epedidos&idp=${ped.getPedCodigo()}"><i class="bi bi-envelope-check"></i> </a>
+                                                        <a class="btn btn-success" href="CtrProductoLi?accion=Epedidos&idp=${ped.getPedCodigo()}"><i class="bi bi-truck"></i> </a>
+                                                        <a class="btn btn-success" href="CtrProductoLi?accion=Entregado&idp=${ped.getPedCodigo()}"><i class="bi bi-box-seam"></i></i> </a>
+                                                        <a class="btn btn-danger" href="CtrProductoLi?accion=Cancelado&idp=${ped.getPedCodigo()}"><i class="bi bi-x-lg"></i> </a>
                                                     </div>
                                                 </td>
                                             </tr>
