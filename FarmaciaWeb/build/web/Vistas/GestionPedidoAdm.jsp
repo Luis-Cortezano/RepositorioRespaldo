@@ -95,7 +95,7 @@
                                             <tr>
                                                 <td><span class="badge pending">${ped.getPedEstado()}</span></td>
                                                 <td>
-                                                    <div class="font-medium">${ped.getTblUsuarios()}</div>
+                                                        <div class="font-medium" href="CtrProductoLi?accion=Epedidos&idUsu=${ped.getTblUsuarios()}">${ped.getTblUsuarios()}</div>
                                                 </td>
                                                 <td>
                                                     <div>${ped.getPedFormaDePago()}</div>
@@ -106,9 +106,9 @@
                                                     <div class="actions">
                                                         <input type="hidden" class="idpqr" value="${ped.getPedCodigo()}">
                                                         <input type="hidden" class="id" id="idUsu" name="idUsu" value="${ped.getTblUsuarios()}">
-                                                        <a class="btn btn-success" href="CtrProductoLi?accion=Epedidos&idp=${ped.getPedCodigo()}"><i class="bi bi-truck"></i> </a>
-                                                        <a class="btn btn-success" href="CtrProductoLi?accion=Entregado&idp=${ped.getPedCodigo()}"><i class="bi bi-box-seam"></i></i> </a>
-                                                        <a class="btn btn-danger" href="CtrProductoLi?accion=Cancelado&idp=${ped.getPedCodigo()}"><i class="bi bi-x-lg"></i> </a>
+                                                        <a class="btn btn-success" href="CtrProductoLi?accion=Epedidos&idUsu=${ped.getTblUsuarios()}"><i class="bi bi-truck"></i> </a>
+                                                        <a class="btn btn-success" href="CtrProductoLi?accion=Entregado&idUsu=${ped.getTblUsuarios()}"><i class="bi bi-box-seam"></i></i> </a>
+                                                        <a class="btn btn-danger" href="CtrProductoLi?accion=Cancelado&idUsu=${ped.getTblUsuarios()}"><i class="bi bi-x-lg"></i> </a>
                                                     </div>
                                                 </td>
                                             </tr>

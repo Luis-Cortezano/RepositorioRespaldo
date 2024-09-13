@@ -489,7 +489,7 @@ public class CtrProductoLi extends HttpServlet {
                         System.out.println("descuento : " + listacarrito.get(i).getDescuento());
                         int st = listacarrito.get(i).getPreciocompra() * can;
                         listacarrito.get(i).setSubtotal(st);
-                        //decuentototal = decuentototal + listacarrito.get(i).getDescuento();
+                        //decuentototal = listacarrito.get(i).getDescuento() / 1250;
                         System.out.println("lista carrito descuento : " + listacarrito.get(i).getDescuento());
                     }
                 }
@@ -642,14 +642,14 @@ public class CtrProductoLi extends HttpServlet {
                             + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
                             + "        </div>\n"
                             + "        <div class='content'>\n"
-                            + "            <h2>Estimado cliente, + sesion.getAttribute(\"User\").toString() +</h2>\n"
+                            + "            <h2>Estimado cliente</h2>\n"
                             + "            <img src='https://i.pinimg.com/originals/9c/15/16/9c15164f48b527ea72d6d1b418f910e0.gif' alt='imagen de contenido'>\n"
                             + "            <p>Su pedido está en proceso, por favor espere un tiempo máximo de 24 horas.</p>\n"
                             + "            <h3>Detalles de pedido:</h3>\n"
-                            + "            <p>Número Pedido: + idpe + </p>\n"
-                            + "            <p>Fecha: + fec + </p>\n"
-                            + "            <p>Valor: + mon +</p>\n"
-                            + "            <p>Estado: + estado +</p>\n"
+                            + "            <p>Número Pedido: " + idpe + "</p>\n"
+                            + "            <p>Fecha: " + fec + "</p>\n"
+                            + "            <p>Valor: " + mon + "</p>\n"
+                            + "            <p>Estado: " + esss + "</p>\n"
                             + "        </div>\n"
                             + "        <div class='footer'>\n"
                             + "            <div class='footer-lists'>\n"
@@ -715,181 +715,181 @@ public class CtrProductoLi extends HttpServlet {
 
             case "Epedidos":
                 String idActu = request.getParameter("idp");
-
+                System.out.println("entro a enviar correo");
                 boolean actualizado = peddao.estadoPED(idActu, "enviado");
 
                 if (actualizado) {
                     pedidos = peddao.listarT();
-                    request.setAttribute("pedidos", ped);
+                    request.setAttribute("pedidos", pedidos);
                     request.getRequestDispatcher("CtrProductoLi?accion=gestion").forward(request, response);
 
-                    int idUsuario = Integer.parseInt(request.getParameter("idUsu"));
+                }
+                int idUsuario = Integer.parseInt(request.getParameter("idUsu"));
 
-                    us = usudao.listarU(idUsuario);
-                    System.out.println(" usuario :" + us.getUsuid());
-                    if (us.getUsuid() != null) {
-                        Properties propiedad = new Properties();
-                        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
-                        propiedad.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
-                        propiedad.setProperty("mail.smtp.starttls.enable", "true");
-                        propiedad.setProperty("mail.smtp.port", "587");
-                        propiedad.setProperty("mail.smtp.auth", "true");
+                us = usudao.listarU(idUsuario);
+                System.out.println(" usuario :" + us.getUsuid());
+                if (us.getUsuid() != null) {
+                    Properties propiedad = new Properties();
+                    propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
+                    propiedad.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");
+                    propiedad.setProperty("mail.smtp.starttls.enable", "true");
+                    propiedad.setProperty("mail.smtp.port", "587");
+                    propiedad.setProperty("mail.smtp.auth", "true");
 
-                        Session session1 = Session.getDefaultInstance(propiedad);
-                        String correoenvio = "farmaciayasbel@gmail.com";
-                        String contrasena = "xybdpcjtapwenajq";
-                        String destinatario = us.getUsucorreo();
+                    Session session1 = Session.getDefaultInstance(propiedad);
+                    String correoenvio = "farmaciayasbel@gmail.com";
+                    String contrasena = "xybdpcjtapwenajq";
+                    String destinatario = us.getUsucorreo();
 
-                        String Asunto = "Pedido Generado";
-                        String Mensaje = "<!DOCTYPE html>\n"
-                                + "<html lang='es'>\n"
-                                + "<head>\n"
-                                + "    <meta charset='UTF-8'>\n"
-                                + "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
-                                + "    <title>Correo Empresarial</title>\n"
-                                + "    <style>\n"
-                                + "        body {\n"
-                                + "            font-family: Arial, sans-serif;\n"
-                                + "            margin: 0;\n"
-                                + "            padding: 0;\n"
-                                + "            background-color: #f4f4f4;\n"
-                                + "        }\n"
-                                + "        .container {\n"
-                                + "            max-width: 600px;\n"
-                                + "            margin: 0 auto;\n"
-                                + "            background-color: #ffffff;\n"
-                                + "            border: 1px solid #dddddd;\n"
-                                + "            padding: 20px;\n"
-                                + "        }\n"
-                                + "        .header {\n"
-                                + "            text-align: center;\n"
-                                + "            padding: 10px 0;\n"
-                                + "            background-color: #74BD64;\n"
-                                + "            color: white;\n"
-                                + "        }\n"
-                                + "        .header img {\n"
-                                + "            max-width: 570px;\n"
-                                + "        }\n"
-                                + "        .content {\n"
-                                + "            text-align: center;\n"
-                                + "            padding: 40px 20px;\n"
-                                + "        }\n"
-                                + "        .content h2 {\n"
-                                + "            color: #333333;\n"
-                                + "            font-size: 22px;\n"
-                                + "            margin-bottom: 10px;\n"
-                                + "        }\n"
-                                + "        .content p {\n"
-                                + "            color: #555555;\n"
-                                + "            font-size: 16px;\n"
-                                + "        }\n"
-                                + "        .content img {\n"
-                                + "            width: 300px;\n"
-                                + "            height: 300px;\n"
-                                + "            border-radius: 50%;\n"
-                                + "            margin-bottom: 0px;\n"
-                                + "            margin-top: 0px;\n"
-                                + "        }\n"
-                                + "        .footer {\n"
-                                + "            background-color: #74BD64;\n"
-                                + "            padding: 20px 0;\n"
-                                + "            color: white;\n"
-                                + "            text-align: center;\n"
-                                + "        }\n"
-                                + "        .footer .footer-lists {\n"
-                                + "            display: flex;\n"
-                                + "            justify-content: center;\n"
-                                + "            text-align: center;\n"
-                                + "            padding-bottom: 20px;\n"
-                                + "        }\n"
-                                + "        .footer .footer-lists > div {\n"
-                                + "            margin: 0 20px;\n"
-                                + "        }\n"
-                                + "        .footer ul {\n"
-                                + "            list-style: none;\n"
-                                + "            padding: 0;\n"
-                                + "        }\n"
-                                + "        .footer h3 {\n"
-                                + "            font-size: 18px;\n"
-                                + "            margin-bottom: 10px;\n"
-                                + "            color: #559D46;\n"
-                                + "        }\n"
-                                + "        .footer li {\n"
-                                + "            font-size: 14px;\n"
-                                + "            color: white;\n"
-                                + "            margin-bottom: 8px;\n"
-                                + "        }\n"
-                                + "        .footer li img {\n"
-                                + "            vertical-align: middle;\n"
-                                + "            margin-right: 10px;\n"
-                                + "            max-width: 20px;\n"
-                                + "        }\n"
-                                + "        .footer p {\n"
-                                + "            text-align: center;\n"
-                                + "            color: white;\n"
-                                + "            margin: 10px 0 0;\n"
-                                + "        }\n"
-                                + "    </style>\n"
-                                + "</head>\n"
-                                + "<body>\n"
-                                + "    <div class='container'>\n"
-                                + "        <div class='header'>\n"
-                                + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
-                                + "        </div>\n"
-                                + "        <div class='content'>\n"
-                                + "            <h2>Estimado cliente, " + us.getUsunombre() + "</h2>\n"
-                                + "            <img src='https://lcpdecoracion.es/wp-content/uploads/2020/06/envio-animacion.gif' alt='imagen de contenido'>\n"
-                                + "            <p>Su pedido está en camino! Pronto estará en la puerta de su casa.</p>\n"
-                                + "            <h3>Detalles de pedido:</h3>\n"
-                                + "            <p>Número Pedido: " + idActu + "</p>\n"
-                                + "            <p>Fecha: " + new Date() + "</p>\n"
-                                + "            <p>Valor: $" + mon + "</p>\n"
-                                + "            <p>Estado: " + estado + "</p>\n"
-                                + "        </div>\n"
-                                + "        <div class='footer'>\n"
-                                + "            <div class='footer-lists'>\n"
-                                + "                <div>\n"
-                                + "                    <h3>Información</h3>\n"
-                                + "                    <ul>\n"
-                                + "                        <li>Dirección: Calle 51d #2g-63</li>\n"
-                                + "                        <li>Teléfono: 324 6794400</li>\n"
-                                + "                    </ul>\n"
-                                + "                </div>\n"
-                                + "                <div>\n"
-                                + "                    <h3>Redes Sociales</h3>\n"
-                                + "                    <ul>\n"
-                                + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/016/716/447/non_2x/facebook-icon-free-png.png' alt='Facebook'/> Facebook</li>\n"
-                                + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png' alt='Instagram'/> Instagram</li>\n"
-                                + "                    </ul>\n"
-                                + "                </div>\n"
-                                + "            </div>\n"
-                                + "            <p>© 2024 FARMACIA YASBEL.</p>\n"
-                                + "        </div>\n"
-                                + "    </div>\n"
-                                + "</body>\n"
-                                + "</html>";
+                    String Asunto = "Pedido Generado";
+                    String Mensaje = "<!DOCTYPE html>\n"
+                            + "<html lang='es'>\n"
+                            + "<head>\n"
+                            + "    <meta charset='UTF-8'>\n"
+                            + "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
+                            + "    <title>Correo Empresarial</title>\n"
+                            + "    <style>\n"
+                            + "        body {\n"
+                            + "            font-family: Arial, sans-serif;\n"
+                            + "            margin: 0;\n"
+                            + "            padding: 0;\n"
+                            + "            background-color: #f4f4f4;\n"
+                            + "        }\n"
+                            + "        .container {\n"
+                            + "            max-width: 600px;\n"
+                            + "            margin: 0 auto;\n"
+                            + "            background-color: #ffffff;\n"
+                            + "            border: 1px solid #dddddd;\n"
+                            + "            padding: 20px;\n"
+                            + "        }\n"
+                            + "        .header {\n"
+                            + "            text-align: center;\n"
+                            + "            padding: 10px 0;\n"
+                            + "            background-color: #74BD64;\n"
+                            + "            color: white;\n"
+                            + "        }\n"
+                            + "        .header img {\n"
+                            + "            max-width: 570px;\n"
+                            + "        }\n"
+                            + "        .content {\n"
+                            + "            text-align: center;\n"
+                            + "            padding: 40px 20px;\n"
+                            + "        }\n"
+                            + "        .content h2 {\n"
+                            + "            color: #333333;\n"
+                            + "            font-size: 22px;\n"
+                            + "            margin-bottom: 10px;\n"
+                            + "        }\n"
+                            + "        .content p {\n"
+                            + "            color: #555555;\n"
+                            + "            font-size: 16px;\n"
+                            + "        }\n"
+                            + "        .content img {\n"
+                            + "            width: 300px;\n"
+                            + "            height: 300px;\n"
+                            + "            border-radius: 50%;\n"
+                            + "            margin-bottom: 0px;\n"
+                            + "            margin-top: 0px;\n"
+                            + "        }\n"
+                            + "        .footer {\n"
+                            + "            background-color: #74BD64;\n"
+                            + "            padding: 20px 0;\n"
+                            + "            color: white;\n"
+                            + "            text-align: center;\n"
+                            + "        }\n"
+                            + "        .footer .footer-lists {\n"
+                            + "            display: flex;\n"
+                            + "            justify-content: center;\n"
+                            + "            text-align: center;\n"
+                            + "            padding-bottom: 20px;\n"
+                            + "        }\n"
+                            + "        .footer .footer-lists > div {\n"
+                            + "            margin: 0 20px;\n"
+                            + "        }\n"
+                            + "        .footer ul {\n"
+                            + "            list-style: none;\n"
+                            + "            padding: 0;\n"
+                            + "        }\n"
+                            + "        .footer h3 {\n"
+                            + "            font-size: 18px;\n"
+                            + "            margin-bottom: 10px;\n"
+                            + "            color: #559D46;\n"
+                            + "        }\n"
+                            + "        .footer li {\n"
+                            + "            font-size: 14px;\n"
+                            + "            color: white;\n"
+                            + "            margin-bottom: 8px;\n"
+                            + "        }\n"
+                            + "        .footer li img {\n"
+                            + "            vertical-align: middle;\n"
+                            + "            margin-right: 10px;\n"
+                            + "            max-width: 20px;\n"
+                            + "        }\n"
+                            + "        .footer p {\n"
+                            + "            text-align: center;\n"
+                            + "            color: white;\n"
+                            + "            margin: 10px 0 0;\n"
+                            + "        }\n"
+                            + "    </style>\n"
+                            + "</head>\n"
+                            + "<body>\n"
+                            + "    <div class='container'>\n"
+                            + "        <div class='header'>\n"
+                            + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
+                            + "        </div>\n"
+                            + "        <div class='content'>\n"
+                            + "            <h2>Estimado cliente, " + us.getUsunombre() + "</h2>\n"
+                            + "            <img src='https://lcpdecoracion.es/wp-content/uploads/2020/06/envio-animacion.gif' alt='imagen de contenido'>\n"
+                            + "            <p>Su pedido está en camino! Pronto estará en la puerta de su casa.</p>\n"
+                            + "            <h3>Detalles de pedido:</h3>\n"
+                            + "            <p>Número Pedido: " + idActu + "</p>\n"
+                            + "            <p>Fecha: " + new Date() + "</p>\n"
+                            + "            <p>Valor: $" + mon + "</p>\n"
+                            + "            <p>Estado: " + estado + "</p>\n"
+                            + "        </div>\n"
+                            + "        <div class='footer'>\n"
+                            + "            <div class='footer-lists'>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Información</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li>Dirección: Calle 51d #2g-63</li>\n"
+                            + "                        <li>Teléfono: 324 6794400</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Redes Sociales</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/016/716/447/non_2x/facebook-icon-free-png.png' alt='Facebook'/> Facebook</li>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png' alt='Instagram'/> Instagram</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "            </div>\n"
+                            + "            <p>© 2024 FARMACIA YASBEL.</p>\n"
+                            + "        </div>\n"
+                            + "    </div>\n"
+                            + "</body>\n"
+                            + "</html>";
 
-                        MimeMessage mail = new MimeMessage(session1);
+                    MimeMessage mail = new MimeMessage(session1);
 
-                        try {
-                            mail.setFrom(new InternetAddress(correoenvio));
-                            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-                            mail.setSubject(Asunto);
-                            mail.setContent(Mensaje, "text/html");
+                    try {
+                        mail.setFrom(new InternetAddress(correoenvio));
+                        mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+                        mail.setSubject(Asunto);
+                        mail.setContent(Mensaje, "text/html");
 
-                            Transport transporte = session1.getTransport("smtp");
-                            transporte.connect(correoenvio, contrasena);
-                            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-                            transporte.close();
-                        } catch (Exception e) {
-                            System.out.println("Error al enviar el correo: " + e);
-                        }
-                        request.getRequestDispatcher("Vistas/LogginPage.jsp").forward(request, response);
-                    } else {
-
+                        Transport transporte = session1.getTransport("smtp");
+                        transporte.connect(correoenvio, contrasena);
+                        transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
+                        transporte.close();
+                    } catch (Exception e) {
+                        System.out.println("Error al enviar el correo: " + e);
                     }
+                    request.getRequestDispatcher("Vistas/LogginPage.jsp").forward(request, response);
+                } else {
 
                 }
+
                 break;
 
             case "Entregado":
@@ -914,9 +914,9 @@ public class CtrProductoLi extends HttpServlet {
                     request.setAttribute("pedidos", ped);
                     request.getRequestDispatcher("CtrProductoLi?accion=gestion").forward(request, response);
 
-                    int idUsuario = Integer.parseInt(request.getParameter("idUsu"));
+                    int idUsuarios = Integer.parseInt(request.getParameter("idUsu"));
 
-                    us = usudao.listarU(idUsuario);
+                    us = usudao.listarU(idUsuarios);
                     System.out.println(" usuario :" + us.getUsuid());
                     if (us.getUsuid() != null) {
                         Properties propiedad = new Properties();
@@ -1028,7 +1028,7 @@ public class CtrProductoLi extends HttpServlet {
                                 + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
                                 + "        </div>\n"
                                 + "        <div class='content'>\n"
-                                + "            <h2>Estimado cliente, {{usuario.nombre}}</h2>\n"
+                                + "            <h2>Estimado cliente,"+  us.getUsunombre() + "</h2>\n"
                                 + "            <img src='https://www.iconsdb.com/icons/preview/red/x-mark-3-xxl.png' alt='imagen de contenido'>\n"
                                 + "            <p>Su pedido has sido cancelado</p>\n"
                                 + "        </div>\n"
