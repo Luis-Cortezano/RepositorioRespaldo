@@ -99,13 +99,11 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="busqueda" placeholder="Digite nombre">
                                             <div class="input-group-append">
-                                                <button type="submit" class="btn btn-success">
-                                                    <i class="bi bi-search"></i> Buscar
-                                                </button>
+                                                <button type="submit" class="btn btn-success" name="accion" value="buscarn"><i class="bi bi-search"></i> Buscar </button>
                                             </div>
                                         </div>
                                     </form>
-
+                                    
                                 </div>
                             </div>
                             <table class="table table-bordered">
