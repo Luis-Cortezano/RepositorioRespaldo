@@ -132,11 +132,11 @@ public class CtrUsuarioCre extends HttpServlet {
                 }
                 break;
              case "buscarn":
-                String nombre = request.getParameter("busqueda");
+                String nombre = request.getParameter("buscarn");
                 System.out.println("nombre: " + nombre);
                 list = dao.listarN(nombre);
                 request.setAttribute("usuarios", list);
-                request.getRequestDispatcher("CtrUsuarioCre?accion=Listar").forward(request, response);
+                request.getRequestDispatcher("/Vistas/ListarUsuariosAdm.jsp").forward(request, response);
                 break;
                 
             case "cambUsu":
