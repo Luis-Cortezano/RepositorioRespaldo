@@ -67,7 +67,7 @@
                             </svg>
                             <span class="sr-only">Home</span>
                         </a>
-                        
+
                         <div class="user-menu">
                             <button class="user-btn btn btn-link">
                                 <img src="https://www.w3schools.com/w3images/avatar2.png" width="32" height="32" alt="Avatar" class="avatar">
@@ -86,7 +86,17 @@
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4">
-                                   
+                                    <!-- Formulario de búsqueda -->
+                                    <form class="form-inline my-2 my-lg-0 mr-auto" action="/FarmaciaWeb/CtrUsuarioCre?accion=buscarn" method="">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" placeholder="Buscar Usuario..." aria-label="Search" name="busqueda">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success" type="submit">BUSCAR</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
 
                                 </div>
                             </div>
@@ -122,8 +132,10 @@
                                             <td class=" text-center border">
                                                 <input type="hidden" name="id" class="id" value="${usu.getUsuid()}">
                                                 <a class="btn btn-danger btneliminar" href="#"><i class="bi bi-trash-fill"></i></a>
-                                                </br> </br>
+                                                </br> 
                                                 <a class="btn " style="background-color: #74BD64" id="btnadmi" href="CtrUsuarioCre?accion=tipoUsu&id=${usu.getUsuid()}"><i class="bi bi-gear-fill"></i></a>
+                                                </br>
+                                                <a class="btn " style="background-color: #FFD700" id="btnusu" href="CtrUsuarioCre?accion=cambUsu&id=${usu.getUsuid()}"><i class="bi bi-person"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
