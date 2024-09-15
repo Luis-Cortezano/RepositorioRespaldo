@@ -93,7 +93,7 @@ public class CtrProveedores extends HttpServlet {
                 System.out.println("nombre: " + nombre);
                 listprov = provdao.listarN(nombre);
                 request.setAttribute("proveedores", listprov);
-                request.getRequestDispatcher("Vistas/ListarProveedoresAdm.jsp").forward(request, response);
+                request.getRequestDispatcher("/Vistas/ListarProveedoresAdm.jsp").forward(request, response);
                 break;
             case "editar":
                 listprov = provdao.listarT();

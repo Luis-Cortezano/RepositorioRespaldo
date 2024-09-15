@@ -3,24 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/HomePageAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/CSS/Gestion.css</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/src/java/Modelo/ProductoDAO.java</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/EditarProductoAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/WelcomeAdmin.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/PqrAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/EditarProveedores.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/CarritoCliente.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/GestionPedidoAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/ListarProductoAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/CSS/style.css</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/ListarUsuariosAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/CSS/IndexAdmin.css</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/HomePage.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/AdminiatracionProductosAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/InventarioAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/web/Vistas/ListarProveedoresAdm.jsp</file>
-            <file>file:/C:/Users/Jashir/Music/vistas_admin/RepositorioRespaldo/FarmaciaWeb/src/java/Controlador/CtrProductoLi.java</file>
+            <file>file:/C:/Users/HOME/Downloads/RepositorioRespaldo/FarmaciaWeb/web/Vistas/ListarUsuariosAdm.jsp</file>
+            <file>file:/C:/Users/HOME/Downloads/RepositorioRespaldo/FarmaciaWeb/web/Vistas/ListarProveedoresAdm.jsp</file>
+            <file>file:/C:/Users/HOME/Downloads/RepositorioRespaldo/FarmaciaWeb/src/java/Modelo/ProductoDAO.java</file>
+            <file>file:/C:/Users/HOME/Downloads/RepositorioRespaldo/FarmaciaWeb/src/java/Controlador/CtrProductoLi.java</file>
+            <file>file:/C:/Users/HOME/Downloads/RepositorioRespaldo/FarmaciaWeb/web/Vistas/ListarProductoAdm.jsp</file>
+            <file>file:/C:/Users/HOME/Downloads/RepositorioRespaldo/FarmaciaWeb/src/java/Controlador/CtrUsuarioCre.java</file>
         </group>
     </open-files>
 </project-private>

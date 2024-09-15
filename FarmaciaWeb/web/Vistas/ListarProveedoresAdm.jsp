@@ -95,7 +95,7 @@
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4">
                                     <!-- Formulario de búsqueda -->
-                                    <form class="form-inline mt-4" action=" " method="post">
+                                    <form class="form-inline mt-4" action="/FarmaciaWeb/CtrProveedores?accion=buscarn">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="busqueda" placeholder="Digite nombre">
                                             <div class="input-group-append">
