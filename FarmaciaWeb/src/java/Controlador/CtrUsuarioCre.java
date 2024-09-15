@@ -131,12 +131,24 @@ public class CtrUsuarioCre extends HttpServlet {
                     request.getRequestDispatcher("CtrUsuarioCre?accion=Listar").forward(request, response);
                 }
                 break;
-            case "buscarn":
-                 String nombreBusqueda = request.getParameter("nombre");
-                 List<Usuario> listaFiltrada = dao.listarN(nombreBusqueda);
-                 request.setAttribute("usuarios", listaFiltrada);
-                 request.getRequestDispatcher("/Vistas/ListarUsuariosAdm.jsp").forward(request, response);
+             case "buscarn":
+                String nombre = request.getParameter("buscarn");
+                System.out.println("nombre: " + nombre);
+                list = dao.listarN(nombre);
+                request.setAttribute("usuarios", list);
+                request.getRequestDispatcher("/Vistas/ListarUsuariosAdm.jsp").forward(request, response);
                 break;
+                
+            case "cambUsu":
+                idActu = request.getParameter("id");
+                System.out.println("Actualizar tipo Usuario " + idActu);
+                boolean cambUsu = dao.tipoUsu(idActu, "Usuario");
+                if (cambUsu) {
+                    list = dao.listarT();
+                    request.setAttribute("usuarios", list);
+                    request.getRequestDispatcher("CtrUsuarioCre?accion=Listar").forward(request, response);
+                }
+                break;  
         }
     }
 
