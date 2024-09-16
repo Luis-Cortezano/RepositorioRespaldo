@@ -496,7 +496,7 @@ public class CtrProductoLi extends HttpServlet {
                 break;
 
             case "Delete":
-                int idproducto = Integer.parseInt(request.getParameter("idp"));
+                int idproducto = Integer.parseInt(request.getParameter("idpp"));
                 for (int i = 0; i < listacarrito.size(); i++) {
                     if (idproducto == listacarrito.get(i).getIdproducto()) {
                         listacarrito.remove(i);
