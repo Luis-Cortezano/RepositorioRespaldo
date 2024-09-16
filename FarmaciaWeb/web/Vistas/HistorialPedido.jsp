@@ -19,11 +19,11 @@
         <link href="/FarmaciaWeb/CSS/Gestion.css" rel="stylesheet" type="text/css"/>
     </head>
     <%-- Session check --%>
-        <%
-            if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
-                response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
-            }
-        %>
+    <%
+        if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
+            response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
+        }
+    %>
 
     <body>
 
@@ -92,7 +92,7 @@
                                 <td><span class="badge bg-warning text-dark">${ped.getPedEstado()}</span></td>
                                 <td>${ped.getPedTotal()}</td>
                                 <td>${ped.getPedFecha()}</td>
-                              
+                                <td><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#verdetalle">Detalles</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -141,6 +141,42 @@
 
     </div>
 
+    <div class="modal fade" id="verdetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle Pedido</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Pedido</th>
+                                <th class="text-center">Producto</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="dp" items="${DetallePedido}">
+                                <tr>
+                                    <td>${dp.getDpdCodigo()}</td>
+                                    <td>${dp.getDpdNombre()}</td>
+                                    <td>${dp.getDpdCantidad()}</td>
+                                    <td>${dp.getDpdPrecioTotal()}</td>
+                                </tr>
+                            </c:forEach>  
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Incluye Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -154,5 +190,21 @@
             document.getElementById('orderDetails').innerText = 'Detalles del pedido: ' + orderId;
         }
     </script>
+    <script>
+            $(document).ready(function() {
+                
+                    <c:if test="${mostrarmodal}">
+                        $('#verdetalle').modal('show');
+                    </c:if>
+                
+            });
+            $(document).ready(function() {
+                
+                    <c:if test="${editarmodal}">
+                        $('#editdetalle').modal('show');
+                    </c:if>
+                
+            });
+        </script>
 </body>
 </html>

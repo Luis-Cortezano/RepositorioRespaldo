@@ -378,5 +378,4 @@ public class ProductoDAO {
         }
         return producto;
     }
-
 }

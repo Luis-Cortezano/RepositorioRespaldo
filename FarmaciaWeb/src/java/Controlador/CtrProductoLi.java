@@ -1028,7 +1028,7 @@ public class CtrProductoLi extends HttpServlet {
                                 + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
                                 + "        </div>\n"
                                 + "        <div class='content'>\n"
-                                + "            <h2>Estimado cliente,"+  us.getUsunombre() + "</h2>\n"
+                                + "            <h2>Estimado cliente," + us.getUsunombre() + "</h2>\n"
                                 + "            <img src='https://www.iconsdb.com/icons/preview/red/x-mark-3-xxl.png' alt='imagen de contenido'>\n"
                                 + "            <p>Su pedido has sido cancelado</p>\n"
                                 + "        </div>\n"
@@ -1142,6 +1142,57 @@ public class CtrProductoLi extends HttpServlet {
                 String contrasenaencriptada = encriptarcontrasena(contrase);
                 boolean cont = usudao.ActualizarCon(idcu, contrasenaencriptada);
                 request.getRequestDispatcher("Vistas/LogginPage.jsp").forward(request, response);
+                break;
+                String idcliente1 = request.getParameter("id");
+                int id1 = Integer.parseInt(idcliente1);
+                us = usudao.list(idcliente);
+                System.out.println("id cliente: " + idcliente);
+                request.setAttribute("Usu", us);
+                idp = Integer.parseInt(request.getParameter("idped"));
+                listadetped = dpdao.Listar(idp);
+                request.setAttribute("mostrarmodal", true);
+                request.setAttribute("detped", listadetped);
+                if (sesion.getAttribute("tipo") != null) {
+                    if (sesion.getAttribute("tipo").equals("Administrador")) {
+                        listapedido = peddao.listar();
+                        request.setAttribute("Pedido", listapedido);
+                        request.getRequestDispatcher("Vistas/Pedidos_Admin.jsp").forward(request, response);
+                    } else {
+                        if (sesion.getAttribute("tipo").equals("Cliente")) {
+                            listapedido = peddao.listar(idcliente);
+                            request.setAttribute("pedido", listapedido);
+                            request.getRequestDispatcher("Vistas/Pedidos_Cliente.jsp").forward(request, response);
+                        }
+                    }
+                } else {
+                    request.getRequestDispatcher("Vistas/index.jsp").forward(request, response);
+                }
+                break;
+            case "DetallePed":
+                int idcliente2 = Integer.parseInt(request.getParameter("id"));
+                int id2 = Integer.parseInt(idcliente);
+                us = usudao.listarI(idcliente);
+                System.out.println("id cliente: " + idcliente);
+                request.setAttribute("Usu", us);
+                idp = Integer.parseInt(request.getParameter("idped"));
+                listadetped = dpdao.Listar(idp);
+                request.setAttribute("mostrarmodal", true);
+                request.setAttribute("detped", listadetped);
+                if (sesion.getAttribute("tipo") != null) {
+                    if (sesion.getAttribute("tipo").equals("Administrador")) {
+                        listapedido = peddao.listar();
+                        request.setAttribute("Pedido", listapedido);
+                        request.getRequestDispatcher("Vistas/Pedidos_Admin.jsp").forward(request, response);
+                    } else {
+                        if (sesion.getAttribute("tipo").equals("Cliente")) {
+                            listapedido = peddao.listar(idcliente);
+                            request.setAttribute("pedido", listapedido);
+                            request.getRequestDispatcher("Vistas/Pedidos_Cliente.jsp").forward(request, response);
+                        }
+                    }
+                } else {
+                    request.getRequestDispatcher("Vistas/index.jsp").forward(request, response);
+                }
                 break;
         }
     }
