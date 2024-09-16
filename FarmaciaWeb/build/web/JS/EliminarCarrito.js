@@ -5,36 +5,35 @@
  */
 
 $(document).ready(function () {
-   
-    $("tr #btndeletecar").click(function (event) {
+    $("body").on("click", ".btndeletecar", function (event) {
         event.preventDefault();
         
-        var idp = $(this).parent().find("#idpro").val(); 
-        console.log("ID :", idp);
+        var idpp = $(this).closest("tr").find(".idpro").val();
+        console.log("ID Producto:", idpp); 
         
-       
         Swal.fire({
             title: "¿Estás seguro?",
             text: "Una vez eliminada, podrás seguir comprando.",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#559D46", 
-            cancelButtonColor: "#94DD81",  
+            confirmButtonColor: "#559D46",
+            cancelButtonColor: "#94DD81",
             confirmButtonText: "Sí, eliminar",
             cancelButtonText: "Cancelar",
             customClass: {
-                popup: 'animated fadeInDown faster' 
-           }     
+                popup: 'animated fadeInDown faster'
+            }
         }).then((result) => {
+            console.log("Resultado Swal:", result); 
             if (result.isConfirmed) {
-                eliminar(idp); 
+                eliminar(idpp); 
                 Swal.fire({
                     title: "¡Eliminada!",
                     text: "ha sido eliminado exitosamente.",
                     icon: "success",
-                    confirmButtonColor: "#74BD64",  
+                    confirmButtonColor: "#74BD64",
                     customClass: {
-                        popup: 'animated fadeOutUp faster'  
+                        popup: 'animated fadeOutUp faster'
                     }
                 }).then(() => {
                     console.log("eliminado con éxito");
@@ -45,31 +44,31 @@ $(document).ready(function () {
                     title: "Cancelado",
                     text: "no se ha eliminado.",
                     icon: "error",
-                    confirmButtonColor: "#B4FD9F"  
+                    confirmButtonColor: "#B4FD9F"
                 });
             }
         });
     });
 
-   
-    function eliminar(idp) {
-        var url = "CtrProductoLi?accion=Delete"; 
+    function eliminar(idpp) {
+        var url = "CtrProductoLi?accion=Delete";
         $.ajax({
             type: 'POST',
             url: url,
-            data: { idp: idp }, 
+            data: { idpp: idpp },
             success: function (data, textStatus, jqXHR) {
                 console.log("eliminado correctamente");
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log("Error al eliminar:", errorThrown); 
+                console.log("Error al eliminar:", errorThrown);
             }
         });
     }
-    
+
+
     $("tr #cantidad").click(function (){
         //alert ("Entro en Cantidad!");
-        var idp = $(this).parent().find("#idpro").val();
+        var idp = $(this).parent().find("#idp").val();
         var Cantidad = $(this).parent().find("#cantidad").val();
         var url = "CtrProductoLi?accion=ActualizarCantidad";
         $.ajax({

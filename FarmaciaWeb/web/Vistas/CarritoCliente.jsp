@@ -15,11 +15,10 @@
         <link href="/FarmaciaWeb/CSS/PQR.css" rel="stylesheet" type="text/css"/>
         <link href="/FarmaciaWeb/CSS/style.css" rel="stylesheet" type="text/css"/>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="/FarmaciaWeb/JS/scripts.js" type="text/javascript"></script>
         <link href="/FarmaciaWeb/CSS/carritocliente.css" rel="stylesheet" type="text/css"/>
-        <script src="/FarmaciaWeb/JS/EliminarCarrito.js" type="text/javascript"></script>
+       
     </head>
     <%
         if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
@@ -104,13 +103,13 @@
                         <td>${car.getPreciocompra()}</td>
                         <td>${producto.getDescuento()}</td>
                         <td>
-                            <input type="hidden" id="idpro" value="${car.getIdproducto()}">
+                            <input type="hidden" id="idp" value="${car.getIdproducto()}">
                             <input type="number" id="cantidad" value="${car.getCantidad()}" class="form-control text-center" min="1">
                         </td>
                         <td>${car.getSubtotal()}</td>
                         <td>
-                            <input type="hidden" id="idpro" value="${car.getIdproducto()}">
-                            <a class="btn btn-outline-danger btn-round" href="#" id="btndeletecar">
+                            <input type="hidden" id="idpro" class="idpro" value="${car.getIdproducto()}">
+                            <a class="btn btn-outline-danger btn-round btndeletecar" href="#" id="btndeletecar">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </td>
@@ -195,8 +194,11 @@
             </div>
         </div>
     </body>
+    
+   
    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
