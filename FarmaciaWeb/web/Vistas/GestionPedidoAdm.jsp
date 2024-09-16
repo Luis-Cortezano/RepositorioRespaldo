@@ -13,12 +13,12 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
     </head>
-     <%-- Session check --%>
-        <%
-            if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
-                response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
-            }
-        %>
+    <%-- Session check --%>
+    <%
+        if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
+            response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
+        }
+    %>
     <body>
         <div class="container-fluid">
             <div class="row">
@@ -90,6 +90,9 @@
                                         <tr>
                                             <th>Estado</th>
                                             <th>Cliente</th>
+                                            <th>Nombre</th>
+                                            <th>Direccion</th>
+                                            <th>Telefono</th>
                                             <th>Forma de pago</th>
                                             <th>Fecha de pedido</th>
                                             <th>Total</th>
@@ -101,8 +104,11 @@
                                             <tr>
                                                 <td><span class="badge pending">${ped.getPedEstado()}</span></td>
                                                 <td>
-                                                        <div class="font-medium" href="CtrProductoLi?accion=Epedidos&idUsu=${ped.getTblUsuarios()}">${ped.getTblUsuarios()}</div>
+                                                    <div class="font-medium" href="CtrProductoLi?accion=Epedidos&idUsu=${ped.getTblUsuarios()}">${ped.getTblUsuarios()}</div>
                                                 </td>
+                                                <td>${ped.getUsuNombre()}</td>
+                                                <td>${ped.getUsuDireccion()}</td>
+                                                <td>${ped.getUsuTelefono()}</td>
                                                 <td>
                                                     <div>${ped.getPedFormaDePago()}</div>
                                                 </td>
