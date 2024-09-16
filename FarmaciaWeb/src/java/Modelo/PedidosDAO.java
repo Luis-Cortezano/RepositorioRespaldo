@@ -43,12 +43,6 @@ public class PedidosDAO {
         pstm = con.prepareStatement(sql);
         ResultSet resul = pstm.executeQuery();
         
-        // Imprimir nombres de columnas para depuración
-        ResultSetMetaData rsmd = resul.getMetaData();
-        for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-            System.out.println("Column " + i + ": " + rsmd.getColumnName(i));
-        }
-        
         while (resul.next()) {
             Pedidos ped = new Pedidos();
             ped.setPedCodigo(resul.getInt("PedCodigo"));
