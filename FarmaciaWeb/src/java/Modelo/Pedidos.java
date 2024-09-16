@@ -17,17 +17,22 @@ public class Pedidos {
     private String PedFecha;
     private double pedTotal;
     private String PedEstado;
-
+    private String  usuNombre;
+    private String  usuDireccion;
+    private String  usuTelefono;
     public Pedidos() {
     }
 
-    public Pedidos(int pedCodigo, int tblUsuarios, String PedFormaDePago, String PedFecha, double pedTotal, String PedEstado) {
+    public Pedidos(int pedCodigo, int tblUsuarios, String PedFormaDePago, String PedFecha, double pedTotal, String PedEstado, String usuNombre, String usuDireccion, String usuTelefono) {
         this.pedCodigo = pedCodigo;
         this.tblUsuarios = tblUsuarios;
         this.PedFormaDePago = PedFormaDePago;
         this.PedFecha = PedFecha;
         this.pedTotal = pedTotal;
         this.PedEstado = PedEstado;
+        this.usuNombre = usuNombre;
+        this.usuDireccion = usuDireccion;
+        this.usuTelefono = usuTelefono;
     }
 
     public int getPedCodigo() {
@@ -77,6 +82,32 @@ public class Pedidos {
     public void setPedEstado(String PedEstado) {
         this.PedEstado = PedEstado;
     }
+
+    public String getUsuNombre() {
+        return usuNombre;
+    }
+
+    public void setUsuNombre(String usuNombre) {
+        this.usuNombre = usuNombre;
+    }
+
+    public String getUsuDireccion() {
+        return usuDireccion;
+    }
+
+    public void setUsuDireccion(String usuDireccion) {
+        this.usuDireccion = usuDireccion;
+    }
+
+    public String getUsuTelefono() {
+        return usuTelefono;
+    }
+
+    public void setUsuTelefono(String usuTelefono) {
+        this.usuTelefono = usuTelefono;
+    }
+
+
 
     
 }

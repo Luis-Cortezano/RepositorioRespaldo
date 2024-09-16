@@ -9,6 +9,7 @@ import Configuracion.Conectar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -27,31 +28,43 @@ public class PedidosDAO {
     Statement stm;
     ResultSet rs;
 
-    public List<Pedidos> listarT() {
-        List<Pedidos> pqrList = new ArrayList<>();
-        try {
-            Conexion = new Conectar();
-            con = Conexion.crearconexion();
-            if (con != null) {
-                System.out.println("Se ha establecido una conexión con la base de datos");
-            }
-            pstm = con.prepareStatement("select * from tblpedidos");
-            ResultSet resul = pstm.executeQuery();
-            while (resul.next()) {
-                Pedidos ped = new Pedidos();
-                ped.setPedCodigo(resul.getInt("PedCodigo"));
-                ped.setTblUsuarios(resul.getInt("tblUsuarios"));
-                ped.setPedFormaDePago(resul.getString("PedFormaDePago"));
-                ped.setPedFecha(resul.getString("PedFecha"));
-                ped.setPedTotal(resul.getDouble("PedTotal"));
-                ped.setPedEstado(resul.getString("PedEstado"));
-                pqrList.add(ped);
-            }
-        } catch (Exception e) {
-            System.out.println("Error al listar las PQR: " + e);
+   public List<Pedidos> listarT() {
+    List<Pedidos> pqrList = new ArrayList<>();
+    try {
+        Conexion = new Conectar();
+        con = Conexion.crearconexion();
+        if (con != null) {
+            System.out.println("Se ha establecido una conexión con la base de datos");
         }
-        return pqrList;
+        String sql = "SELECT p.PedCodigo, p.tblUsuarios, p.PedFormaDePago, p.PedFecha, p.PedTotal, p.PedEstado, " +
+                     "u.UsuNombre, u.UsuDireccion, u.UsuTelefono " +
+                     "FROM tblpedidos p " +
+                     "JOIN tblusuarios u ON p.tblUsuarios = u.UsuID";
+        pstm = con.prepareStatement(sql);
+        ResultSet resul = pstm.executeQuery();
+        
+        while (resul.next()) {
+            Pedidos ped = new Pedidos();
+            ped.setPedCodigo(resul.getInt("PedCodigo"));
+            ped.setTblUsuarios(resul.getInt("tblUsuarios"));
+            ped.setPedFormaDePago(resul.getString("PedFormaDePago"));
+            ped.setPedFecha(resul.getString("PedFecha"));
+            ped.setPedTotal(resul.getDouble("PedTotal"));
+            ped.setPedEstado(resul.getString("PedEstado"));
+            
+            // Obtener información del usuario
+            ped.setUsuNombre(resul.getString("UsuNombre"));
+            ped.setUsuDireccion(resul.getString("UsuDireccion"));
+            ped.setUsuTelefono(resul.getString("UsuTelefono"));
+            
+            pqrList.add(ped);
+        }
+    } catch (Exception e) {
+        System.out.println("Error al listar los pedidos: " + e);
     }
+    return pqrList;
+}
+
 
     public void crear(Pedidos ped) {
         try {
@@ -204,7 +217,7 @@ public class PedidosDAO {
         }
         return id;
     }
-    
+
     public boolean estadoPED(String id, String nuevoEstado) {
         try {
             Conexion = new Conectar();
@@ -213,14 +226,14 @@ public class PedidosDAO {
                 System.out.println("Se ha establecido una conexión con la base de datos");
             }
             pstm = con.prepareStatement("UPDATE tblpedidos SET PedEstado = ? WHERE PedCodigo = ?");
-             pstm.setString(1, nuevoEstado); 
-             pstm.setString(2, id); 
+            pstm.setString(1, nuevoEstado);
+            pstm.setString(2, id);
             pstm.executeUpdate();
             return true;
         } catch (Exception e) {
             System.out.println("Error al actualizar el estado de la PQR: " + e);
             return false;
-        } 
-        
+        }
+
     }
 }
