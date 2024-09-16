@@ -180,7 +180,7 @@ public class PedidosDAO {
             if (con != null) {
                 System.out.println("Se establecio una conexcion con la base de datos pedido");
             }
-            pstm = con.prepareStatement("select * from tblpedidos where PedEstado = ?");
+            pstm = con.prepareStatement("select * from tblpedidos where PedEstado = ? and UsuID = ?");
             pstm.setString(1, est);
             rs = pstm.executeQuery();
             while (rs.next()) {
@@ -236,4 +236,5 @@ public class PedidosDAO {
         }
 
     }
+    
 }
