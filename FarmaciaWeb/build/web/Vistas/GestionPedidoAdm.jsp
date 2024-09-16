@@ -13,6 +13,12 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
     </head>
+     <%-- Session check --%>
+        <%
+            if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
+                response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
+            }
+        %>
     <body>
         <div class="container-fluid">
             <div class="row">

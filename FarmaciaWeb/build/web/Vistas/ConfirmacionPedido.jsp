@@ -18,7 +18,12 @@
         <link href="/FarmaciaWeb/CSS/style.css" rel="stylesheet" type="text/css"/>
 
     </head>
-
+    <%-- Session check --%>
+    <%
+        if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
+            response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
+        }
+    %>
     <body>
 
 
@@ -83,7 +88,7 @@
         <main class="container my-5">
             <h2 class="text-center mb-4" style="color: #559D46;">Confirmación de Pedido</h2>
             <form>
-               
+
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="nombre" class="form-label" style="color: #559D46;">Nombre de la persona que recibe</label>
@@ -100,14 +105,14 @@
                     <input type="text" class="form-control" id="direccion" placeholder="Dirección completa" required>
                 </div>
 
-                
+
                 <h4 class="mt-4" style="color: #559D46;">Productos Seleccionados</h4>
                 <ul class="list-group mb-3">
                     <c:forEach var="car" items="${carrito}">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        ${car.getNombre()}
-                        <span class="badge bg-success rounded-pill">${car.getPreciocompra()}</span>
-                    </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            ${car.getNombre()}
+                            <span class="badge bg-success rounded-pill">${car.getPreciocompra()}</span>
+                        </li>
                     </c:forEach>
                 </ul>
 
@@ -120,7 +125,7 @@
                 <!-- Botón de confirmación -->
                 <div class="text-center">
                     <button type="submit" class="btn" style="background-color: #559D46; color: white;" onclick="ejecutarTarea()">Confirmar Pedido</button>
-                   
+
                 </div>
             </form>
         </main>
@@ -212,11 +217,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-         <script>
-                            function ejecutarTarea() {
-                                document.getElementById("MensajeEspera").style.display = "block";
-                                $('#reloj').modal('show');
-                            }
-    </script>
+        <script>
+                        function ejecutarTarea() {
+                            document.getElementById("MensajeEspera").style.display = "block";
+                            $('#reloj').modal('show');
+                        }
+        </script>
     </body>
 </html>
