@@ -82,7 +82,7 @@
                             <th>Estado</th>
                             <th>Precio</th>
                             <th>Fecha</th>
-                            <th>Acción</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -92,11 +92,7 @@
                                 <td><span class="badge bg-warning text-dark">${ped.getPedEstado()}</span></td>
                                 <td>${ped.getPedTotal()}</td>
                                 <td>${ped.getPedFecha()}</td>
-                                <td>
-                                    <a class="btn btn-outline-primary btn-sm" href="/FarmaciaWeb/CtrProductoLi?accion=EditarDet&idpro=${ped.getPedCodigo()}" data-bs-toggle="modal" data-bs-target="#orderModal">
-                                        Ver detalles
-                                    </a>
-                                </td>
+                              
                             </tr>
                         </c:forEach>
                     </tbody>

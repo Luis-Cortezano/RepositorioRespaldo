@@ -26,6 +26,7 @@ public class CtrUsuarioCre extends HttpServlet {
     UsuarioDAO dao = new UsuarioDAO();
     Usuario us = new Usuario();
     List<Usuario> list = dao.listarT();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -69,7 +70,7 @@ public class CtrUsuarioCre extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      List<Usuario> list = dao.listarT();
+        List<Usuario> list = dao.listarT();
 
         String id, nom, ape, dir, tel, cor, usu, pas, tip, idActu;
         String accion = request.getParameter("accion");
@@ -131,14 +132,14 @@ public class CtrUsuarioCre extends HttpServlet {
                     request.getRequestDispatcher("CtrUsuarioCre?accion=Listar").forward(request, response);
                 }
                 break;
-             case "buscar":
+            case "buscar":
                 String nombre = request.getParameter("txtbuscar");
                 System.out.println("nombre: " + nombre);
                 list = dao.listarN(nombre);
                 request.setAttribute("usuarios", list);
                 request.getRequestDispatcher("/Vistas/ListarUsuariosAdm.jsp").forward(request, response);
                 break;
-                
+
             case "cambUsu":
                 idActu = request.getParameter("id");
                 System.out.println("Actualizar tipo Usuario " + idActu);
@@ -148,7 +149,57 @@ public class CtrUsuarioCre extends HttpServlet {
                     request.setAttribute("usuarios", list);
                     request.getRequestDispatcher("CtrUsuarioCre?accion=Listar").forward(request, response);
                 }
-                break;  
+                break;
+
+            case "editarusuario":
+                String idUsuarioParam = request.getParameter("id");  
+                
+                if (idUsuarioParam != null && !idUsuarioParam.isEmpty()) {
+                    try {
+                        int idusuario = Integer.parseInt(idUsuarioParam); 
+                        System.out.println("ID Usuario: " + idusuario);
+
+                        Usuario usuario = dao.listaridp(idusuario);  
+                        request.setAttribute("usuario", usuario);
+
+                        request.getRequestDispatcher("/Vistas/EditarCuenta.jsp").forward(request, response);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: El valor de 'id' no es un número válido.");
+                        request.setAttribute("error", "ID de usuario no válido.");
+                      
+                    }
+                } else {
+                    System.out.println("El parámetro 'id' es nulo o vacío.");
+                    request.setAttribute("error", "ID de usuario no proporcionado.");
+                   
+                }
+                break;
+
+            case "actualizarUsuario":
+
+                int idUsuario = Integer.parseInt(request.getParameter("id"));
+                System.out.println("id usuario : " + idUsuario);
+                String usua = request.getParameter("usuario");
+                String nomb = request.getParameter("nombre");
+                String apel = request.getParameter("apellido");
+                String corr = request.getParameter("correo");
+                String tele = request.getParameter("telefono");
+                String dire = request.getParameter("direccion");
+
+                Usuario us = new Usuario();
+                us.setUsuusuario(usua);
+                us.setUsunombre(nomb);
+                us.setUsuapellido(apel);
+                us.setUsucorreo(corr);
+                us.setUsutelefono(tele);
+                us.setUsudireccion(dire);
+                us.setUsuid(request.getParameter("id"));
+                System.out.println(us);
+                dao.actualizar(us);
+                request.getRequestDispatcher("CtrUsuarioCre?accion=editarusuario").forward(request, response);
+                System.out.println("salio de actualiar");
+                break;
+
         }
     }
 
