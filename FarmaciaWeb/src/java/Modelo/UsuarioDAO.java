@@ -305,9 +305,9 @@ public class UsuarioDAO {
             pstm.setString(2, usu.getUsunombre());
             pstm.setString(3, usu.getUsuapellido());
             pstm.setString(4, usu.getUsucorreo());
-            pstm.setString(6, usu.getUsutelefono());
-            pstm.setString(7, usu.getUsudireccion());
-            pstm.setString(8, usu.getUsuid());
+            pstm.setString(5, usu.getUsutelefono());
+            pstm.setString(6, usu.getUsudireccion());
+            pstm.setString(7, usu.getUsuid());
 
             pstm.executeUpdate();
         } catch (Exception e) {

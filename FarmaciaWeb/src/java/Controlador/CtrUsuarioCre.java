@@ -178,6 +178,7 @@ public class CtrUsuarioCre extends HttpServlet {
             case "actualizarUsuario":
 
                 int idUsuario = Integer.parseInt(request.getParameter("id"));
+                System.out.println("id usuario : " + idUsuario);
                 String usua = request.getParameter("usuario");
                 String nomb = request.getParameter("nombre");
                 String apel = request.getParameter("apellido");
@@ -192,9 +193,11 @@ public class CtrUsuarioCre extends HttpServlet {
                 us.setUsucorreo(corr);
                 us.setUsutelefono(tele);
                 us.setUsudireccion(dire);
-
+                us.setUsuid(request.getParameter("id"));
+                System.out.println(us);
                 dao.actualizar(us);
-                request.getRequestDispatcher("FarmaciaWeb/CtrUsuarioCre?accion=editarusuario&id=" + idUsuario).forward(request, response);
+                request.getRequestDispatcher("CtrUsuarioCre?accion=editarusuario").forward(request, response);
+                System.out.println("salio de actualiar");
                 break;
 
         }

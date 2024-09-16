@@ -72,7 +72,7 @@
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
             <div class="col-md-6 form-container">
                 <h3 class="text-center mb-4">Editar Información del Usuario</h3>
-                <form action="CtrUsuarioCre?accion=actualizarUsuario" method="GET">
+                <form action="/FarmaciaWeb/CtrUsuarioCre?accion=actualizarUsuario" method="get">
                     <input type="hidden" name="id" value="${usuario.getUsuid()}">
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Nombre de Usuario</label>
