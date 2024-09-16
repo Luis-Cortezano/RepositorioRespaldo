@@ -18,6 +18,12 @@
         <link href="/FarmaciaWeb/CSS/GestionPedidoAdm.css" rel="stylesheet" type="text/css"/>
         <link href="/FarmaciaWeb/CSS/Gestion.css" rel="stylesheet" type="text/css"/>
     </head>
+    <%-- Session check --%>
+        <%
+            if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
+                response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
+            }
+        %>
 
     <body>
 

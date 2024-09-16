@@ -21,7 +21,7 @@
     </head>
     <%
         if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
-            response.sendRedirect("../Vistas/LogginPage.jsp");
+            response.sendRedirect("/FarmacaiWeb/Vistas/LogginPage.jsp");
         }
 
     %>
