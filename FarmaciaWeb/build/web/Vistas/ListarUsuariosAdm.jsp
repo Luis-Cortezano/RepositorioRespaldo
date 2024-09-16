@@ -87,15 +87,12 @@
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4">
                                     <!-- Formulario de búsqueda -->
-                                    <form class="form-inline my-2 my-lg-0 mr-auto" action="/FarmaciaWeb/CtrUsuariosCre?accion=buscarn" method="GET">
-                                        <div class="input-group">
-                                            <input class="form-control" type="search" placeholder="Buscar Usuario..." aria-label="Search" name="buscarn">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-success" type="submit">BUSCAR</button>
-                                            </div>
+                                    <form class="form-inline mt-4" action="/FarmaciaWeb/CtrUsuarioCre?accion=buscar">
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <input type="text" class="form-control" name="txtbuscar" placeholder="digite nombre">
                                         </div>
+                                        <button type="submit" class="btn btn-success mb-2" name="accion" value="buscar"><i class="bi bi-search"></i> Buscar</button>
                                     </form>
-
 
 
                                 </div>

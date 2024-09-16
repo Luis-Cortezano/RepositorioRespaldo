@@ -25,7 +25,7 @@ public class CtrUsuarioCre extends HttpServlet {
 
     UsuarioDAO dao = new UsuarioDAO();
     Usuario us = new Usuario();
-
+    List<Usuario> list = dao.listarT();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -69,7 +69,7 @@ public class CtrUsuarioCre extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Usuario> list = dao.listarT();
+      List<Usuario> list = dao.listarT();
 
         String id, nom, ape, dir, tel, cor, usu, pas, tip, idActu;
         String accion = request.getParameter("accion");
@@ -131,8 +131,8 @@ public class CtrUsuarioCre extends HttpServlet {
                     request.getRequestDispatcher("CtrUsuarioCre?accion=Listar").forward(request, response);
                 }
                 break;
-             case "buscarn":
-                String nombre = request.getParameter("buscarn");
+             case "buscar":
+                String nombre = request.getParameter("txtbuscar");
                 System.out.println("nombre: " + nombre);
                 list = dao.listarN(nombre);
                 request.setAttribute("usuarios", list);
