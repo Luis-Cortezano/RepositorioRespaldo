@@ -9,8 +9,11 @@ import Configuracion.Conectar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -166,57 +169,54 @@ public class UsuarioDAO {
         return usu;
     }
 
-    
-
-public boolean eliminarUsu(String ide) {
-    try {
-        Conexcion = new Conectar();
-        Connection con = Conexcion.crearconexion();
-        if (con != null) {
-            System.out.println("Se ha establecido una conexion con la base de datos");
-        }
-        int idInt = Integer.parseInt(ide);
-        pstm = con.prepareStatement("DELETE FROM tblusuarios WHERE UsuID = ?");
-        pstm.setInt(1, idInt);  
-        pstm.executeUpdate();
-        return true;
-    } catch (Exception e) {
-        System.out.println("Error al eliminar el usuario: " + e);
-        return false;
-    } finally {
+    public boolean eliminarUsu(String ide) {
         try {
-            if (pstm != null) {
-                pstm.close();
-            }
+            Conexcion = new Conectar();
+            Connection con = Conexcion.crearconexion();
             if (con != null) {
-                con.close();
+                System.out.println("Se ha establecido una conexion con la base de datos");
             }
+            int idInt = Integer.parseInt(ide);
+            pstm = con.prepareStatement("DELETE FROM tblusuarios WHERE UsuID = ?");
+            pstm.setInt(1, idInt);
+            pstm.executeUpdate();
+            return true;
         } catch (Exception e) {
-            System.out.println("Error al cerrar los recursos: " + e);
+            System.out.println("Error al eliminar el usuario: " + e);
+            return false;
+        } finally {
+            try {
+                if (pstm != null) {
+                    pstm.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Error al cerrar los recursos: " + e);
+            }
         }
     }
-}
 
-    
-    public boolean tipoUsu(String id, String nuevoTipo){
-        try{
-         Conexcion = new Conectar();
-         con = Conexcion.crearconexion();
-         if(con != null){
-             System.out.println("Se ha es establecido una conexión con la base de datos");
-         }
-         pstm = con.prepareStatement("UPDATE tblusuarios SET UsuUsuarioTipo = ? WHERE UsuID = ?");
-         pstm.setString(1, nuevoTipo);
-         pstm.setString(2, id);
-         pstm.execute();
-         return true;
-        }catch(Exception e){
+    public boolean tipoUsu(String id, String nuevoTipo) {
+        try {
+            Conexcion = new Conectar();
+            con = Conexcion.crearconexion();
+            if (con != null) {
+                System.out.println("Se ha es establecido una conexión con la base de datos");
+            }
+            pstm = con.prepareStatement("UPDATE tblusuarios SET UsuUsuarioTipo = ? WHERE UsuID = ?");
+            pstm.setString(1, nuevoTipo);
+            pstm.setString(2, id);
+            pstm.execute();
+            return true;
+        } catch (Exception e) {
             System.out.println("Error en cambiar el tipo" + e);
             return false;
         }
-    
+
     }
-    
+
     public Usuario listarU(int id) {
         Usuario usu = new Usuario();
         System.out.println("idao : " + id);
@@ -230,7 +230,7 @@ public boolean eliminarUsu(String ide) {
             pstm.setInt(1, id);
             resul = pstm.executeQuery();
             while (resul.next()) {
-                
+
                 usu.setUsuid(resul.getString(1));
                 usu.setUsutipo(resul.getString(2));
                 usu.setUsuusuario(resul.getString(3));
@@ -239,31 +239,81 @@ public boolean eliminarUsu(String ide) {
                 usu.setUsucorreo(resul.getString(6));
                 usu.setUsutelefono(resul.getString(8));
                 usu.setUsudireccion(resul.getString(9));
-                
+
             }
         } catch (Exception e) {
             System.out.println("Error al listarN los usuarios por nombre" + e);
         }
         return usu;
     }
-    
-    public boolean ActualizarCon(int id , String cont ){
-        try{
-         Conexcion = new Conectar();
-         con = Conexcion.crearconexion();
-         if(con != null){
-             System.out.println("Se ha es establecido una conexión con la base de datos");
-         }
-         pstm = con.prepareStatement("UPDATE tblusuarios SET UsuContrasena = ? WHERE UsuID = ?");
-         pstm.setString(1, cont);
-         pstm.setInt(2, id);
-         pstm.execute();
-         return true;
-        }catch(Exception e){
+
+    public boolean ActualizarCon(int id, String cont) {
+        try {
+            Conexcion = new Conectar();
+            con = Conexcion.crearconexion();
+            if (con != null) {
+                System.out.println("Se ha es establecido una conexión con la base de datos");
+            }
+            pstm = con.prepareStatement("UPDATE tblusuarios SET UsuContrasena = ? WHERE UsuID = ?");
+            pstm.setString(1, cont);
+            pstm.setInt(2, id);
+            pstm.execute();
+            return true;
+        } catch (Exception e) {
             System.out.println("Error en cambiar el tipo" + e);
             return false;
         }
-    
+
+    }
+
+    public Usuario listaridp(int id) {
+        Usuario usu = new Usuario();
+        try {
+            Conexcion = new Conectar();
+            con = Conexcion.crearconexion();
+            if (con != null) {
+                System.out.println("Conexión establecida con la base de datos para usuarios.");
+            }
+            pstm = con.prepareStatement("SELECT * FROM tblusuarios WHERE UsuID = ?");
+            pstm.setInt(1, id);
+            resul = pstm.executeQuery();
+            while (resul.next()) {
+                usu.setUsuid(resul.getString(1));
+                usu.setUsuusuario(resul.getString(3));
+                usu.setUsunombre(resul.getString(4));
+                usu.setUsuapellido(resul.getString(5));
+                usu.setUsucorreo(resul.getString(6));
+                usu.setUsutelefono(resul.getString(8));
+                usu.setUsudireccion(resul.getString(9));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar el usuario por ID: " + e);
+        }
+        return usu;
+    }
+
+    public void actualizar(Usuario usu) {
+        try {
+            Conexcion = new Conectar();
+            con = Conexcion.crearconexion();
+            if (con != null) {
+                System.out.println("Se ha es establecido una conexión con la base de datos");
+            }
+            pstm = con.prepareStatement("UPDATE tblusuarios SET UsuUsuario = ?, UsuNombre = ?, UsuApellido = ?, UsuCorreo = ?, UsuTelefono = ?, UsuDireccion = ? WHERE UsuID = ?");
+
+            pstm.setString(1, usu.getUsuusuario());
+            pstm.setString(2, usu.getUsunombre());
+            pstm.setString(3, usu.getUsuapellido());
+            pstm.setString(4, usu.getUsucorreo());
+            pstm.setString(6, usu.getUsutelefono());
+            pstm.setString(7, usu.getUsudireccion());
+            pstm.setString(8, usu.getUsuid());
+
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error al actualizar" + e);
+        }
+
     }
 
 }
