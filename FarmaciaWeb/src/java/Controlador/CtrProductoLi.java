@@ -1299,16 +1299,76 @@ public class CtrProductoLi extends HttpServlet {
                     String destinatario = us.getUsucorreo();
 
                     String Asunto = "Pedido Generado";
-                    String Mensaje = "Estimado cliente " + us.getUsunombre() + " por favor si quiere cambiar la contraseña ingrese al siguiente link \n" + "http://localhost:8080/FarmaciaWeb/CtrProductoLi?accion=nuevacont&id=" + us.getUsuid();
+                    String Mensaje
+                            = "<!DOCTYPE html>\n"
+                            + "<html lang='es'>\n"
+                            + "<head>\n"
+                            + "    <meta charset='UTF-8'>\n"
+                            + "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n"
+                            + "    <title>Correo Empresarial</title>\n"
+                            + "    <style>\n" 
+                            + "        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }\n"
+                            + "        .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; padding: 20px; }\n"
+                            + "        .header { text-align: center; padding: 10px 0; background-color: #74BD64; color: white; }\n"
+                            + "        .header img { max-width: 570px; }\n"
+                            + "        .content { text-align: center; padding: 40px 20px; }\n"
+                            + "        .content h2 { color: #333333; font-size: 22px; margin-bottom: 10px; }\n"
+                            + "        .content p { color: #555555; font-size: 16px; }\n"
+                            + "        .footer { background-color: #74BD64; padding: 20px 0; color: white; text-align: center; }\n"
+                            + "        .footer .footer-lists { display: flex; justify-content: center; text-align: center; padding-bottom: 20px; }\n"
+                            + "        .footer .footer-lists > div { margin: 0 20px; }\n"
+                            + "        .footer ul { list-style: none; padding: 0; }\n"
+                            + "        .footer h3 { font-size: 18px; margin-bottom: 10px; color: #559D46; }\n"
+                            + "        .footer li { font-size: 14px; color: white; margin-bottom: 8px; }\n"
+                            + "        .footer li img { vertical-align: middle; margin-right: 10px; max-width: 20px; }\n"
+                            + "        .footer p { text-align: center; color: white; margin: 10px 0 0; }\n"
+                            + "    </style>\n"
+                            + "</head>\n"
+                            + "<body>\n"
+                            + "    <div class='container'>\n"
+                            + "        <div class='header'>\n"
+                            + "            <img src='https://i.pinimg.com/736x/be/7a/16/be7a16bf55b08da751bafcc4a5fec46f.jpg' alt='Logo de la Empresa'>\n"
+                            + "        </div>\n"
+                            + "        <div class='content'>\n"
+                            + "            <h2>Estimado cliente, " + us.getUsunombre() + "</h2>\n"
+                            + "            <p>Por favor, si desea cambiar su contraseña, ingrese al siguiente enlace:</p>\n"
+                            + "            <p><a href='http://localhost:8080/FarmaciaWeb/CtrProductoLi?accion=nuevacont&id=" + us.getUsuid() + "'>Cambiar contraseña</a></p>\n"
+                            + "        </div>\n"
+                            + "        <div class='footer'>\n"
+                            + "            <div class='footer-lists'>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Información</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li>Dirección: Calle 51d #2g-63</li>\n"
+                            + "                        <li>Teléfono: 324 6794400</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "                <div>\n"
+                            + "                    <h3>Redes Sociales</h3>\n"
+                            + "                    <ul>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/016/716/447/non_2x/facebook-icon-free-png.png'/> Facebook</li>\n"
+                            + "                        <li><img src='https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png'/> Instagram</li>\n"
+                            + "                    </ul>\n"
+                            + "                </div>\n"
+                            + "            </div>\n"
+                            + "            <p>© 2024 FARMACIA YASBEL. Todos los derechos reservados.</p>\n"
+                            + "        </div>\n"
+                            + "    </div>\n"
+                            + "</body>\n"
+                            + "</html>";
 
+                    
+                    
+                    
+                    //"http://localhost:8080/FarmaciaWeb/CtrProductoLi?accion=nuevacont&id=" + us.getUsuid();
                     MimeMessage mail = new MimeMessage(session1);
 
                     try {
                         mail.setFrom(new InternetAddress(correoenvio));
                         mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
                         mail.setSubject(Asunto);
-                        mail.setText(Mensaje);
-                        //mail.setContent(Mensaje, "text/html");
+                        //mail.setText(Mensaje);
+                        mail.setContent(Mensaje, "text/html");
 
                         Transport transporte = session1.getTransport("smtp");
                         transporte.connect(correoenvio, contrasena);
