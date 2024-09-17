@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HOME/Downloads/RepositorioRespaldo/FarmaciaWeb/web/Vistas/HomePage.jsp</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/web/Vistas/CarritoCliente.jsp</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/src/java/Modelo/Carrito.java</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/src/java/Controlador/CtrProductoLi.java</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/web/JS/EliminarProducto.js</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/web/Vistas/HomePage.jsp</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/src/java/Modelo/PedidosDAO.java</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/src/java/Controlador/CtrUsuarioCre.java</file>
+            <file>file:/C:/Users/HPLAPTOP01/OneDrive/Imágenes/new/RepositorioRespaldo/FarmaciaWeb/web/Vistas/HistorialPedido.jsp</file>
         </group>
     </open-files>
 </project-private>

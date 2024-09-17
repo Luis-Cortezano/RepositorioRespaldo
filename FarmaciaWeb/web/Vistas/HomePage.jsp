@@ -49,7 +49,7 @@
                             <a class="dropdown-item text-center" href="#"><i class="bi bi-person"></i></a>
                             <a class="dropdown-item " >${usuario.getUsunombre()}</a>
                             <a class="dropdown-item " >${usuario.getUsutipo()}</a>
-                            <a class="dropdown-item" href="/FarmaciaWeb/CtrProductoLi?accion=historial">Historial Pedido</a>
+                            <a class="dropdown-item" href="/FarmaciaWeb/CtrProductoLi?accion=historial&id=${usuario.getUsuid()}">Historial Pedido</a>
                              <a class="dropdown-item" href="/FarmaciaWeb/CtrUsuarioCre?accion=editarusuario&id=${usuario.getUsuid()}">Editar Info</a>
                             <a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#exampleModal">PQR</a>
                             <a class="dropdown-item text-danger" href="/FarmaciaWeb/CtrProductoLi?accion=salir">Cerrar Sesion</a>

@@ -315,5 +315,32 @@ public class UsuarioDAO {
         }
 
     }
+    public List listarA() {
+        ArrayList<Usuario> list = new ArrayList<>();
+        try {
+            Conexcion = new Conectar();
+            Connection con = Conexcion.crearconexion();
+            if (con != null) {
+                System.out.println("Se ha establecido una conexcion con la base de datos");
+            }
+            pstm = con.prepareStatement("select * from tblusuarios where UsuUsuarioTipo like ?'");
+            resul = pstm.executeQuery();
+            while (resul.next()) {
+                Usuario usu = new Usuario();
+                usu.setUsuid(resul.getString(1));
+                usu.setUsutipo(resul.getString(2));
+                usu.setUsuusuario(resul.getString(3));
+                usu.setUsunombre(resul.getString(4));
+                usu.setUsuapellido(resul.getString(5));
+                usu.setUsucorreo(resul.getString(6));
+                usu.setUsutelefono(resul.getString(8));
+                usu.setUsudireccion(resul.getString(9));
+                list.add(usu);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar administrador " + e);
+        }
+        return list;
+    }
 
 }

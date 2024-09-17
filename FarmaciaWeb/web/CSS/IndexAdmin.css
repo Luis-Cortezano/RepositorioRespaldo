@@ -1,5 +1,5 @@
 html, body {
-    overflow: hidden; /* Evita el desplazamiento general */
+    overflow: hidden; 
     margin: 0;
     padding: 0;
     width: 100%;
@@ -10,7 +10,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden; /* Previene el desplazamiento general */
+    overflow: hidden; 
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
@@ -20,12 +20,12 @@ body {
 
 .container-fluid {
     position: relative;
-    width: calc(100%); /* Ajusta el ancho para dejar espacio para el menú lateral */
+    width: calc(100%); 
     height: 100%;
-    overflow: auto; /* Permite el desplazamiento interno si es necesario */
+    overflow: auto; 
     padding: 0;
     box-sizing: border-box;
-    margin-left: 250px; /* Deja espacio para el menú lateral */
+    margin-left: 250px; 
 }
 
 .sidebar {
@@ -201,7 +201,7 @@ body {
 }
 
 .collapsible-link {
-    color: #fff;
+    color: white;
     text-decoration: none;
     display: block;
     padding: 10px;
@@ -211,11 +211,13 @@ body {
 }
 
 .collapsible-link:hover {
-    background-color: #357c28; 
+    background-color: white; 
+
 }
 
 .submenu {
     margin-top: 10px;
+    
 }
 
 .table-container {
@@ -338,7 +340,7 @@ body {
 }
 
 .category-item:hover {
-    background-color: #e9ecef; /* Cambia el color de fondo al pasar el ratón según tu diseño */
+    background-color: #e9ecef; 
 }
 
 

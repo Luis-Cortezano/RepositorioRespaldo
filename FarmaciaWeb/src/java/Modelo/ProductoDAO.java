@@ -240,7 +240,7 @@ public class ProductoDAO {
             if (con != null) {
                 System.out.println("Se ha establecido una conexión con la base de datos");
             }
-            nombre = "%" + nombre + "%";  // Agregar el comodín para la búsqueda
+            nombre = "%" + nombre + "%";  
             System.out.println("Consulta SQL: select * from tblproductos where ProStock > 0 and ProNombre like " + nombre);
 
             pstm = con.prepareStatement("select * from tblproductos where ProStock > 0 and ProNombre like ?");
@@ -378,5 +378,53 @@ public class ProductoDAO {
         }
         return producto;
     }
+    
+    public List<Producto> buscarPorFecha(Date fechaVencimiento1 , Date fechaVencimiento2 ) {
+    List<Producto> productos = new ArrayList<>();
+        try {
+            Conexcion = new Conectar();
+            con = Conexcion.crearconexion();
+            if (con != null) {
+                System.out.println("Se ha establecido una conexión con la base de datos");
+            }
+   
 
+            pstm = con.prepareStatement("select * from tblproductos where ProFechaVencimiento between ? and ?");
+            pstm.setDate(1, fechaVencimiento1);
+            pstm.setDate(2, fechaVencimiento2);
+            resul = pstm.executeQuery();
+
+            while (resul.next()) {
+                Producto prod = new Producto();
+                prod.setProCodigo(resul.getInt(1));
+                prod.setTblProverdores(resul.getInt(2));
+                prod.setProPrecio(resul.getInt(3));
+                prod.setProDescuento(resul.getInt(4));
+                prod.setProMarca(resul.getString(5));
+                prod.setProNombre(resul.getString(6));
+                prod.setProFoto(resul.getString(7));
+                prod.setProDescripcion(resul.getString(8));
+                prod.setProFechaVencimiento(resul.getDate(9));
+                prod.setProStok(resul.getInt(10));
+                prod.setProVendido(resul.getInt(11));
+                prod.setTblCategoria(resul.getInt(12));
+
+                productos.add(prod);
+                System.out.println("producto : " + prod.getProNombre() );
+            }
+
+            System.out.println("Productos obtenidos: " + productos.size());
+            for (Producto p : productos) {
+                System.out.println("Producto encontrado: " + p.getProNombre());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al buscar los productos: " + e);
+        }
+        return productos;
+    }
+
+   
+
+    
 }

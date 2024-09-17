@@ -104,7 +104,7 @@
                         <td>${producto.getDescuento()}</td>
                         <td>
                             <input type="hidden" id="idp" value="${car.getIdproducto()}">
-                            <input type="number" id="cantidad" value="${car.getCantidad()}" class="form-control text-center" min="1">
+                            <input type="number" id="cantidad" value="${car.getCantidad()}" class="form-control text-center"  max="${car.getStock()}">
                         </td>
                         <td>${car.getSubtotal()}</td>
                         <td>
@@ -122,6 +122,7 @@
     <!-- Información de pago -->
     <form action="/FarmaciaWeb/CtrProductoLi?accion=pedido" method="post">
         <input type="hidden" name="idusu" value="${usuario.getUsuid()}">
+        <input type="hidden" name="stock" value="${usuario.getUsuid()}">
         <input type="hidden" name="totalp" value="${totalpagar}">
         <div class="card-body">
             <label>Subtotal:</label>
@@ -132,7 +133,7 @@
             <input type="text" value="${total}" readonly="" class="form-control mb-2">
         </div>
 
-        <!-- Selección de tipo de pago -->
+        
         <div class="formulario_grupo-input mb-3">
             <select class="form-control formulario_input" name="tipos" id="tipos">
                 <option value="Efectivo">Efectivo</option>

@@ -15,11 +15,11 @@
 
     </head>
     <%-- Session check --%>
-        <%
-            if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
-                response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
-            }
-        %>
+    <%
+        if (session.getAttribute("log") == null || session.getAttribute("log").equals('0')) {
+            response.sendRedirect("/FarmaciaWeb/Vistas/LogginPage.jsp");
+        }
+    %>
     <body>
         <div class="container-fluid">
             <div class="row">
@@ -72,16 +72,20 @@
                             </svg>
                             <span class="sr-only">Home</span>
                         </a>
-                        <form class="search-form d-flex">
-                            <input type="search" class="form-control" placeholder="Buscar productos...">
-                            <svg class="icon search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="m21 21-4.3-4.3"/>
-                            </svg>
+                        <form class="search-form d-flex" action="/FarmaciaWeb/CtrProductoLi?accion=busquedaF">
+                            
+                            <label>fecha inicio</label>
+                            <input type="date" class="form-control" name="fecha" placeholder="Buscar por fecha...">
+                            <label>fecha fecha fin</label>
+                            <input type="date" class="form-control" name="fecha2" placeholder="Buscar por fecha...">
+                            
+                            <button class="btn-search my-2 my-sm-0" type="submit" name="accion" value="busquedaF">
+                                <div class="original">BUSCAR</div>
+                            </button>
                         </form>
                         <div class="user-menu">
                             <button class="user-btn btn btn-link">
-                                
+
                             </button>
                             <div class="user-menu-content">
                                 <a class="dropdown-item " >${usuario.getUsunombre()}</a>
@@ -99,7 +103,7 @@
                                         <th>Producto</th>
                                         <th>Disponibilidad</th>
                                         <th>Vendidos</th>
-                                        
+
                                         <th>fecha de vencimiento</th>
                                     </tr>
                                 </thead>
@@ -120,7 +124,7 @@
                 </div>
             </div>
         </div>
-        
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
