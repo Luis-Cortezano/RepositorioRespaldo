@@ -701,7 +701,7 @@ public class CtrProductoLi extends HttpServlet {
                 System.out.println("id  del uauario : " + request.getParameter("id"));
                 int idcu = Integer.parseInt(request.getParameter("id"));
 
-                String contrasenaencriptada = encriptarcontrasena(contrase);
+                 String contrasenaencriptada = encriptarcontrasena(contrase);
                 boolean cont = usudao.ActualizarCon(idcu, contrasenaencriptada);
                 request.getRequestDispatcher("Vistas/LogginPage.jsp").forward(request, response);
                 break;
