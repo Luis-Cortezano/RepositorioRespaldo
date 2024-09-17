@@ -91,6 +91,7 @@
                                             <th>Estado</th>
                                             <th>Cliente</th>
                                             <th>Nombre</th>
+                                            <th>Detalle</th>
                                             <th>Direccion</th>
                                             <th>Telefono</th>
                                             <th>Forma de pago</th>
@@ -107,6 +108,11 @@
                                                     <div class="font-medium" href="CtrProductoLi?accion=Epedidos&idUsu=${ped.getTblUsuarios()}">${ped.getTblUsuarios()}</div>
                                                 </td>
                                                 <td>${ped.getUsuNombre()}</td>
+                                                <td>
+                                                    <input type="hidden" class="idpedi" value="${ped.getPedCodigo()}">
+                                                   <a class="btn btn-success" href="CtrDetalPedido?accion=Listar&idpe=${ped.getPedCodigo()}"><i class="bi bi-eye"></i></a>
+
+                                                </td>
                                                 <td>${ped.getUsuDireccion()}</td>
                                                 <td>${ped.getUsuTelefono()}</td>
                                                 <td>
@@ -117,7 +123,7 @@
                                                 <td>
                                                     <div class="actions">
                                                         <input type="hidden" class="idpqr" value="${ped.getPedCodigo()}">
-                                                        <input type="hidden" class="id" id="idUsu" name="idUsu" value="${ped.getTblUsuarios()}">
+                                                        <input type="hidden" class="id" id="idUsu" name="idUsu" value="${ped.getTblUsuarios()}"> 
                                                         <a class="btn btn-success" href="CtrProductoLi?accion=Epedidos&idUsu=${ped.getTblUsuarios()}"><i class="bi bi-truck"></i> </a>
                                                         <a class="btn btn-success" href="CtrProductoLi?accion=Entregado&idUsu=${ped.getTblUsuarios()}"><i class="bi bi-box-seam"></i></i> </a>
                                                         <a class="btn btn-danger" href="CtrProductoLi?accion=Cancelado&idUsu=${ped.getTblUsuarios()}"><i class="bi bi-x-lg"></i> </a>

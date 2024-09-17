@@ -48,32 +48,33 @@ public class DetallePedidoDAO {
         }
     }
 
-    public List Listar(int idp) {
-        List<DetallePedido> detped = new ArrayList();
-        try {
-            cone = new Conectar();
-            con = cone.crearconexion();
-            if (con != null) {
-                System.out.println("Se establecio una conexcion con la base de datos");
-            }
-            pstm = con.prepareStatement("select * from tbldetallesdepedidos where tblPedido = ?");
-            pstm.setInt(1, idp);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                DetallePedido dep = new DetallePedido();
-                dep.setDpdCodigo(rs.getInt(1));
-                dep.setTblProducto(rs.getInt(2));
-                dep.setTblPedido(rs.getInt(3));
-                dep.setDpdCantidad(rs.getInt(4));
-                dep.setDpdPrecioTotal(rs.getInt(5));
-                dep.setDpdNombreProducto(rs.getString(6));
-                dep.setDpdPrecioUnitario(rs.getInt(7));
-                dep.setDpdFecha(rs.getDate(8));
-                detped.add(dep);
-            }
-        } catch (Exception e) {
-            System.out.println("Error al listar los detalles de pedido" + e.getMessage());
+public List<DetallePedido> ListarDp(int idp) {
+    List<DetallePedido> detped = new ArrayList<>();
+    try {
+        cone = new Conectar();
+        con = cone.crearconexion();
+        if (con != null) {
+            System.out.println("Se estableció una conexión con la base de datos");
         }
-        return detped;
+        pstm = con.prepareStatement("SELECT * FROM tbldetallesdepedidos WHERE tblPedido = ?");
+        pstm.setInt(1, idp);
+        rs = pstm.executeQuery();
+        while (rs.next()) {
+            DetallePedido dep = new DetallePedido();
+            dep.setDpdCodigo(rs.getInt("DpdCodigo"));
+            dep.setTblProducto(rs.getInt("tblProducto"));
+            dep.setTblPedido(rs.getInt("tblPedido"));
+            dep.setDpdCantidad(rs.getInt("DpdCantidad"));
+            dep.setDpdPrecioTotal(rs.getInt("DpdPrecioTotal"));
+            dep.setDpdNombreProducto(rs.getString("DpdNombreProducto"));
+            dep.setDpdPrecioUnitario(rs.getInt("DpdPrecioUnitario"));
+            dep.setDpdFecha(rs.getDate("DpdFecha"));
+            detped.add(dep);
+        }
+    } catch (Exception e) {
+        System.out.println("Error al listar los detalles de pedido: " + e.getMessage());
     }
+    return detped;
+}
+
 }
